@@ -1,0 +1,55 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+.vscode/
+*.iml
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build & Logs
+*.log
+*.swp
+*~
+.gradle
+node_modules/
+
+# Secrets
+.env
+api-key.txt
+secrets.properties
+
+# Dokumentation & Setup
+README.md
+STRUKTUR.md
+INHALT.md
+notizen.org
+
+# IDE Cache
+.metadata
+.classpath
+.project
+.settings/
+bin/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
