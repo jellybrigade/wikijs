@@ -74,30 +74,45 @@ git pull
 
 ## Visueller Workflow
 
+```mermaid
+graph LR
+    WD["📁 Working Directory<br/>(deine Dateien)"]
+    SA["📋 Staging Area<br/>(ausgewählte Änderungen)"]
+    LR["💾 Local Repository<br/>(.git Ordner)"]
+    RR["🌐 Remote Repository<br/>(GitHub, GitLab)"]
+
+    WD -->|git add .| SA
+    SA -->|git commit -m| LR
+    LR -->|git push| RR
+    RR -->|git pull| LR
+    LR -->|git checkout| WD
 ```
-Schritt 1: Dateien editieren
-┌────────────────────────────┐
-│ Working Directory          │
-│ ├── file.java (MODIFIED)   │
-│ └── test.java (UNTRACKED)  │
-└────────────────────────────┘
 
-Schritt 2: git add
-┌────────────────────────────┐
-│ Staging Area               │
-│ ├── file.java              │  ← Ausgewählt
-│ └── test.java (still here) │     (nicht hier)
-└────────────────────────────┘
+### Schritt-für-Schritt Erklärung
 
-Schritt 3: git commit
-┌────────────────────────────┐
-│ Local Repository (.git)    │
-│ [abc123] commit message    │  ← Im Local Repo
-│ ├─ file.java               │
-│ └─ test.java               │
-└────────────────────────────┘
+**Schritt 1: Dateien editieren**
+```
+Working Directory
+├── file.java (MODIFIED)   ← Geändert
+└── test.java (UNTRACKED)  ← Neu
+```
 
-Schritt 4: git push
+**Schritt 2: git add**
+```
+Staging Area
+├── file.java              ← Ausgewählt
+└── test.java (noch nicht)
+```
+
+**Schritt 3: git commit**
+```
+Local Repository (.git)
+[abc123] commit message
+├─ file.java               ← Im Local Repo gespeichert
+└─ test.java
+```
+
+**Schritt 4: git push
 ┌────────────────────────────┐
 │ Remote Repository (GitHub) │
 │ [abc123] commit message    │  ← Auf Server

@@ -75,21 +75,15 @@ acc.deposit(100);  // ✓ Validiert
 
 Eine Klasse kann Eigenschaften von einer anderen erben:
 
-```java
-class Animal {
-  void eat() { System.out.println("Eating..."); }
-  void sleep() { System.out.println("Sleeping..."); }
-}
+```mermaid
+graph TD
+    Animal["🐾 Animal<br/>━━━━━━━<br/>+ eat()<br/>+ sleep()"]
+    Dog["🐶 Dog<br/>extends Animal<br/>━━━━━━━<br/>+ bark()"]
 
-class Dog extends Animal {
-  void bark() { System.out.println("Woof!"); }
-}
+    Dog -->|erbt von| Animal
 
-// Nutzung
-Dog dog = new Dog();
-dog.eat();    // ← Von Animal geerbt
-dog.sleep();  // ← Von Animal geerbt
-dog.bark();   // ← Nur in Dog
+    style Animal fill:#fff9c4
+    style Dog fill:#bbdefb
 ```
 
 **Vorteil**: Code-Wiederverwendung, gemeinsame Basis.

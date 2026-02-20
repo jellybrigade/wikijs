@@ -28,14 +28,25 @@ In den 1950er/60ern hatten alle Sprachen `GOTO`:
 
 **Problem**: "Spaghetti Code" — Programm Fluss ist unvorstellbar verwirrend!
 
-```
-  Start
-    ↓
-  10 →→→→→→→→→→ 30 (Sprung!)
-           ↙      ↘
-          40       50 (Sprung!)
-           ↘      ↙
-            Ende
+```mermaid
+graph TD
+    Start["Start<br/>(Zeile 10)"]
+    Set["X = 5<br/>(Zeile 20)"]
+    Check{"IF X > 3?<br/>(Zeile 30)"}
+    Small["Print groß<br/>(Zeile 40)"]
+    Large["Print klein<br/>(Zeile 50)"]
+    End["END<br/>(Zeile 60)"]
+
+    Start --> Set
+    Set --> Check
+    Check -->|false| Small
+    Check -->|true| Large
+    Small --> End
+    Large --> End
+
+    style Start fill:#90ee90
+    style End fill:#ff6b6b
+    style Check fill:#ffeb3b
 ```
 
 ### Edsger Dijkstra: "GO TO Statement Considered Harmful"
@@ -50,33 +61,33 @@ In den 1950er/60ern hatten alle Sprachen `GOTO`:
 
 Mit nur 3 Kontrollstrukturen:
 
-```
-Sequenz
-┌─────────┐
-│ Action1 │
-├─────────┤
-│ Action2 │
-├─────────┤
-│ Action3 │
-└─────────┘
+```mermaid
+graph TD
+    subgraph Seq["🔀 Sequenz"]
+        A["Aktion 1"]
+        B["Aktion 2"]
+        C["Aktion 3"]
+        A --> B
+        B --> C
+    end
 
-Selektion (IF-ELSE)
-┌───────────┐
-│Bedingung? │
-├─┬─────────┤
-│J│ Action1 │
-├─┼─────────┤
-│N│ Action2 │
-└─┴─────────┘
+    subgraph Sel["❓ Selektion IF-ELSE"]
+        Check{"Bedingung?"}
+        Yes["Aktion 1"]
+        No["Aktion 2"]
+        Check -->|JA| Yes
+        Check -->|NEIN| No
+    end
 
-Iteration (WHILE)
-┌───────────┐
-│Bedingung? │
-├─────┬─────┤
-│  J  │Aktion
-├─────┼─────┤
-│  N  │Ende
-└─────┴─────┘
+    subgraph Iter["🔁 Iteration WHILE"]
+        Check2{"Bedingung?"}
+        Action["Aktion"]
+        Back["↩️"]
+        Check2 -->|JA| Action
+        Action --> Back
+        Back --> Check2
+        Check2 -->|NEIN| End["Ende"]
+    end
 ```
 
 ## Beweis (Vereinfacht)

@@ -14,12 +14,18 @@ Frage: Wie geht die CPU von deinem Java-Code zu Maschinencode?
 
 **Ansatz**: Übersetz den Code VOR der Ausführung zu Maschinencode.
 
-```
-source.c → [Compiler] → binary (Maschinencode)
-            (einmalig)
+```mermaid
+graph LR
+    src["📝 source.c"]
+    gcc["⚙️ gcc Compiler"]
+    bin["💾 binary<br/>(Maschinencode)"]
+    cpu["🖥️ CPU"]
+    exe["▶️ Ausführung<br/>(schnell)"]
 
-Dann:
-binary → [CPU] → Ausführung (schnell!)
+    src -->|einmalig| gcc
+    gcc --> bin
+    bin --> cpu
+    cpu --> exe
 ```
 
 **Beispiele**: C, C++
@@ -64,9 +70,17 @@ Maschinencode
 
 **Ansatz**: Interpretiere den Code während der Ausführung.
 
-```
-script.py → [Interpreter] → (liest und führt aus)
-            (beim Ausführen)
+```mermaid
+graph LR
+    py["📝 script.py"]
+    interp["🔍 Interpreter"]
+    out["▶️ Zeile für Zeile<br/>lesen & ausführen"]
+
+    py --> interp
+    interp --> out
+
+    style py fill:#fff9c4
+    style out fill:#ffccbc
 ```
 
 **Beispiele**: Python, JavaScript, Ruby
@@ -106,11 +120,29 @@ Zeile 2 ausführt
 
 **Ansatz**: Kombiniere beide! Übersetz zur Runtime, cache optimiert code.
 
-```
-source.java → [Compiler] → Bytecode (plattformunabhängig)
+```mermaid
+graph TD
+    src["📝 source.java"]
+    javac["⚙️ javac Compiler"]
+    bc["📦 Bytecode<br/>(plattformunabhängig)"]
+    jvm["🎯 JVM"]
+    interp["🔍 Interpreter<br/>(am Anfang)"]
+    jit["⚡ JIT Compiler<br/>(erkennt Hot-Methods)"]
+    mas["💾 Maschinencode<br/>(optimiert, gecacht)"]
+    exe["▶️ schnelle Ausführung"]
 
-Bytecode → [JVM (Interpreter + JIT Compiler)] → Maschinencode
-          (beim Ausführen, mit Optimierung)
+    src --> javac
+    javac --> bc
+    bc --> jvm
+    jvm --> interp
+    interp -->|Hot-Method?| jit
+    jit --> mas
+    mas --> exe
+
+    style src fill:#fff9c4
+    style bc fill:#bbdefb
+    style mas fill:#c8e6c9
+    style exe fill:#a5d6a7
 ```
 
 **Beispiele**: Java, C#, C++, Go (in Teilen)

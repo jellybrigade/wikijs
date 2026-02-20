@@ -2,37 +2,38 @@
 
 ## Übergeordnete Struktur
 
-```
-GEGENSTAND: Programmiertechnik
-         ↓
-    Wir befassen uns mit PROGRAMMEN
-         ↓
-    Programme setzen um: ALGORITHMEN und PROGRAMMABLÄUFE
-         ↓
-    Algorithmen werden modelliert in: NOTATIONSSPRACHEN
-         (PAP, Struktogramme, Pseudocode)
-         ↓
-    Notationssprachen bestehen aus: ABLAUFSTRUKTUREN
-         (If-Else, Schleifen, Sequenzen)
-         ↓
-    Ablaufstrukturen werden verwendet in: UNTERPROGRAMME
-         (Funktionen, Methoden)
-         ↓
-    Unterprogramme sind Teil von: PROGRAMMABLÄUFEN
-         (Der Ablauf der ganzen Anwendung)
+```mermaid
+graph TD
+    A["📚 GEGENSTAND:<br/>Programmiertechnik"]
+    B["💻 PROGRAMME<br/>(Was wir schreiben)"]
+    C["🧠 ALGORITHMEN<br/>(Lösung für Problem)"]
+    D["🎨 NOTATIONSSPRACHEN<br/>(PAP, Struktogramm,<br/>Pseudocode)"]
+    E["🔀 ABLAUFSTRUKTUREN<br/>(If-Else, Schleifen,<br/>Sequenzen)"]
+    F["📦 UNTERPROGRAMME<br/>(Funktionen, Methoden)"]
+    G["🎯 PROGRAMMABLAUF<br/>(Ganze Anwendung)"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
 ```
 
 Parallel dazu:
 
-```
-PROGRAMME verarbeiten: DATEN
-         ↓
-    Daten werden repräsentiert durch: DATENSTRUKTUREN
-         (Arrays, Listen, Maps, Sets, Bäume)
-         ↓
-    Datenstrukturen können sein:
-         - EINFACHE Typen: Integer, String, Float, Char, Boolean
-         - ZUSAMMENGESETZTE Typen: Array, Record, List, Set, Map
+```mermaid
+graph TD
+    P["💻 PROGRAMME<br/>(verarbeiten)"]
+    D["💾 DATEN<br/>(Eingabe/Ausgabe)"]
+    DS["📊 DATENSTRUKTUREN<br/>(Arrays, Listen, Maps,<br/>Sets, Bäume)"]
+    E["🔢 EINFACHE TYPEN<br/>(Integer, String,<br/>Float, Char, Boolean)"]
+    Z["📦 ZUSAMMENGESETZTE<br/>(Array, List, Set,<br/>Map, Record)"]
+
+    P --> D
+    D --> DS
+    DS --> E
+    DS --> Z
 ```
 
 ## Die zwei großen Blöcke

@@ -2,22 +2,18 @@
 
 ## Von Mensch zu Machine
 
-```
-┌──────────────────────────────────────────┐
-│ High-Level: int x = 5 + 3;              │ ← Was wir schreiben
-└───────────────────┬──────────────────────┘
-                    │ Compiler/Interpreter
-                    ↓
-┌──────────────────────────────────────────┐
-│ Assembler: mov eax, 5                   │ ← Register, RAM
-│            add eax, 3                    │
-│            mov [x], eax                  │
-└───────────────────┬──────────────────────┘
-                    │ Assembler
-                    ↓
-┌──────────────────────────────────────────┐
-│ Maschinencode: 01010101 10100011 01010100│ ← CPU versteht das
-└──────────────────────────────────────────┘
+```mermaid
+graph TD
+    A["📝 High-Level<br/>int x = 5 + 3;<br/>(Was wir schreiben)"]
+    B["🔧 Assembler<br/>mov eax, 5<br/>add eax, 3<br/>mov [x], eax<br/>(Register, RAM)"]
+    C["💾 Maschinencode<br/>01010101 10100011 01010100<br/>(CPU versteht das)"]
+
+    A -->|Compiler| B
+    B -->|Assembler| C
+
+    style A fill:#fff9c4
+    style B fill:#f3e5f5
+    style C fill:#ffccbc
 ```
 
 ## Ebenen der Maschinennähe
@@ -156,17 +152,28 @@ macOS x86:      01010101 10100011
 **Problem**: Jede CPU braucht andere Befehle!
 
 ### Hochsprache
-```
-int x = 5 + 3;   ← Java Code
+```mermaid
+graph LR
+    Code["int x = 5 + 3;"]
+    Win["Windows"]
+    Linux["Linux"]
+    Mac["macOS"]
+    Class["Main.class<br/>(Bytecode)"]
 
-// Auf Windows
-javac Main.java → Main.class → java Main.java
+    Code -->|javac| Class
+    Class --> Win
+    Class --> Linux
+    Class --> Mac
 
-// Auf Linux
-javac Main.java → Main.class → java Main.java
+    Win -->|java| Exe1["Ausführung"]
+    Linux -->|java| Exe2["Ausführung"]
+    Mac -->|java| Exe3["Ausführung"]
 
-// Auf macOS
-javac Main.java → Main.class → java Main.java
+    style Code fill:#fff9c4
+    style Class fill:#c8e6c9
+    style Exe1 fill:#a5d6a7
+    style Exe2 fill:#a5d6a7
+    style Exe3 fill:#a5d6a7
 ```
 
 **Gleicher Code läuft überall!** (Dank JVM = Java Virtual Machine)

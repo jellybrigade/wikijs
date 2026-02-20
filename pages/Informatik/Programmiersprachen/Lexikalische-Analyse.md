@@ -2,19 +2,33 @@
 
 ## Der Weg vom Code zur Ausführung
 
-```
-Source Code (String von Zeichen)
-      ↓ Scanner / Lexer
-Tokens (Liste von Symbolen)
-      ↓ Parser
-AST (Abstract Syntax Tree)
-      ↓ Compiler/Interpreter
-Maschinencode / Bytecode
-      ↓ CPU / JVM
-Ausführung
+```mermaid
+graph TD
+    SC["📝 Source Code<br/>(String von Zeichen)<br/>int x = 5 + 3;"]
+    lex["🔍 Scanner / Lexer<br/>(Lexikalische Analyse)"]
+    tok["📋 Tokens<br/>(Liste von Symbolen)<br/>KEYWORD, IDENTIFIER, NUMBER..."]
+    par["🔧 Parser<br/>(Syntaxanalyse)"]
+    ast["🌳 AST<br/>(Abstract Syntax Tree)"]
+    cmp["⚙️ Compiler/Interpreter<br/>(Codegenerierung)"]
+    code["💾 Maschinencode / Bytecode"]
+    exe["▶️ Ausführung<br/>(CPU / JVM)"]
+
+    SC --> lex
+    lex --> tok
+    tok --> par
+    par --> ast
+    ast --> cmp
+    cmp --> code
+    code --> exe
+
+    style SC fill:#fff9c4
+    style tok fill:#bbdefb
+    style ast fill:#c8e6c9
+    style code fill:#f8bbd0
+    style exe fill:#e1bee7
 ```
 
-Wir schauen hier die ersten zwei Schritte an.
+Wir schauen hier die ersten zwei Schritte an (Scanner und Parser).
 
 ## Schritt 1: Lexikalische Analyse (Scanning)
 
@@ -184,20 +198,23 @@ Der Parser nutzt diese Regeln um zu überprüfen ob Input gültig ist.
 
 ## Zusammenfassung
 
+```mermaid
+graph TD
+    Input["&quot;int x = 5 + 3;&quot;<br/>Eingabe"]
+    Scanner["🔍 Scanner"]
+    Tokens["KEYWORD(int)<br/>IDENTIFIER(x)<br/>OPERATOR(=)<br/>NUMBER(5)<br/>OPERATOR(+)<br/>NUMBER(3)<br/>PUNCTUATION(;)"]
+    Parser["🔧 Parser"]
+    AST["Abstract Syntax Tree<br/><br/>VarDecl<br/>├─ Type: int<br/>├─ Name: x<br/>└─ Expression:<br/>&nbsp;&nbsp;&nbsp;&nbsp;BinOp<br/>&nbsp;&nbsp;&nbsp;&nbsp;├─ 5<br/>&nbsp;&nbsp;&nbsp;&nbsp;├─ +<br/>&nbsp;&nbsp;&nbsp;&nbsp;└─ 3"]
+
+    Input --> Scanner
+    Scanner --> Tokens
+    Tokens --> Parser
+    Parser --> AST
+
+    style Input fill:#fff9c4
+    style Tokens fill:#bbdefb
+    style AST fill:#c8e6c9
 ```
-"int x = 5 + 3;"
-
-↓ Scanner (Lexical Analysis)
-
-[KEYWORD(int), IDENTIFIER(x), OPERATOR(=), NUMBER(5),
- OPERATOR(+), NUMBER(3), PUNCTUATION(;)]
-
-↓ Parser (Syntax Analysis)
-
-         VarDecl
-        /    |   \
-    Type  Name  Expression
-     int    x      BinOp
                    / | \
                  5  +  3
 

@@ -4,27 +4,32 @@
 
 Docker ist ein **Containerisierungs-Tool**. Ein Container ist wie eine leichte virtuelle Maschine, aber viel kleiner:
 
-```
-Tradition: VM
-┌──────────────────────┐
-│ Hypervisor           │
-├──────────────────────┤
-│ VM OS (Linux)        │  ← Ganzes Betriebssystem
-│ ├─ Libraries         │
-│ ├─ Runtime           │
-│ └─ App               │
-└──────────────────────┘
-→ Groß, langsam, ressourcenhungrig
+```mermaid
+graph LR
+    subgraph VM["❌ Tradition: VM"]
+        VMH["Hypervisor"]
+        VMOS["VM OS Linux"]
+        VML["Libraries + Runtime"]
+        VMAPP["App"]
+        VMH --> VMOS
+        VMOS --> VML
+        VML --> VMAPP
+    end
 
-Docker: Container
-┌──────────────────────┐
-│ Docker Engine        │
-├──────────────────────┤
-│ Libraries + Runtime  │  ← Nur nötigste (kein OS)
-│ ├─ App               │
-│ └─ Config            │
-└──────────────────────┘
-→ Klein, schnell, ressourceneffizient
+    subgraph CONT["✓ Docker: Container"]
+        DE["Docker Engine"]
+        LIB["Libraries + Runtime"]
+        APP["App"]
+        CFG["Config"]
+        DE --> LIB
+        LIB --> APP
+        DE --> CFG
+    end
+
+    VM -->|Groß, langsam,<br/>ressourcenhungrig| CONT
+
+    style VM fill:#ffcccc
+    style CONT fill:#ccffcc
 ```
 
 ## Installation

@@ -28,30 +28,29 @@ Ein **PAP** ist eine **grafische Darstellung** nach DIN 66001.
 
 ### Beispiel: Maximum zweier Zahlen
 
-```
-        ┌─────────┐
-        │  START  │
-        └────┬────┘
-             │
-       ┌─────▼────────┐
-       │ Input: a, b  │
-       └─────┬────────┘
-             │
-        ┌────▼──────┐
-        │ a > b ?    │  ◄─ Entscheidung
-        └────┬───┬──┘
-           JA│   │NEIN
-        ┌────▼┐ ┌▼────┐
-        │ max=a│ │max=b│
-        └────┬┘ └┬────┘
-             │   │
-        ┌────▼───▼────┐
-        │ Output: max  │
-        └─────┬────────┘
-              │
-        ┌─────▼──────┐
-        │    STOP    │
-        └────────────┘
+```mermaid
+graph TD
+    Start(["🟢 START"])
+    Input["📥 Input: a, b"]
+    Decision{"a > b?"}
+    MaxA["max = a"]
+    MaxB["max = b"]
+    Output["📤 Output: max"]
+    Stop(["🔴 STOP"])
+
+    Start --> Input
+    Input --> Decision
+    Decision -->|JA| MaxA
+    Decision -->|NEIN| MaxB
+    MaxA --> Output
+    MaxB --> Output
+    Output --> Stop
+
+    style Start fill:#90ee90
+    style Stop fill:#ff6b6b
+    style Input fill:#fff9c4
+    style Output fill:#fff9c4
+    style Decision fill:#ffeb3b
 ```
 
 ### Vorteile

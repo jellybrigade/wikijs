@@ -116,16 +116,17 @@ GET map["Charlie"] → null (nicht vorhanden)
 
 **LIFO: Last-In-First-Out**
 
-```
-┌───┐
-│ 3 │ ← pop()
-├───┤
-│ 2 │
-├───┤
-│ 1 │ ← bottom
-└───┘
-     ↑
-   push(3)
+```mermaid
+graph TB
+    subgraph Stack["📚 STACK (LIFO)<br/>Last-In-First-Out"]
+        Top["pop() ← [3] ← Top"]
+        Mid["[2]"]
+        Bot["[1] ← push()"]
+    end
+
+    style Top fill:#ff9999
+    style Mid fill:#fff9c4
+    style Bot fill:#99ff99
 ```
 
 **Operationen**:
@@ -144,13 +145,27 @@ Click back → .pop() → stackoverflow entfernt
 
 **FIFO: First-In-First-Out**
 
-```
-enqueue(4) ←
-┌───┬───┬───┬───┐
-│ 1 │ 2 │ 3 │ 4 │
-└───┴───┴───┴───┘
- ↑
- dequeue()
+```mermaid
+graph LR
+    subgraph Queue["🎫 QUEUE (FIFO)<br/>First-In-First-Out"]
+        In["enqueue(4) →"]
+        Q1["[1]"]
+        Q2["[2]"]
+        Q3["[3]"]
+        Q4["[4]"]
+        Out["← dequeue()"]
+    end
+
+    In --> Q1
+    Q1 --> Q2
+    Q2 --> Q3
+    Q3 --> Q4
+    Q4 --> Out
+
+    style Q1 fill:#99ff99
+    style Q4 fill:#ff9999
+    style Q2 fill:#fff9c4
+    style Q3 fill:#fff9c4
 ```
 
 **Operationen**:

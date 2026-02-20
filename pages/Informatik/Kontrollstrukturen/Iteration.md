@@ -4,12 +4,19 @@
 
 **Iteration** (Schleife) bedeutet: Wiederhole einen Code-Block solange eine Bedingung erfüllt ist.
 
-```
-WIEDERHOLE
-├─ Aktion
-└─ Bedingung erfüllt?
-   ├─ JA → Zurück zu Aktion
-   └─ NEIN → Weiter
+```mermaid
+graph TD
+    Start["🔁 WIEDERHOLE"]
+    Action["Aktion"]
+    Check{"Bedingung<br/>erfüllt?"}
+    Again["↩️ Zurück zu Aktion"]
+    Next["➡️ Weiter"]
+
+    Start --> Action
+    Action --> Check
+    Check -->|JA| Again
+    Again --> Action
+    Check -->|NEIN| Next
 ```
 
 ## While-Schleife (Kopfgesteuert)

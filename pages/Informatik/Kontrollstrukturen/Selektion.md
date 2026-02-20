@@ -4,12 +4,14 @@
 
 **Selektion** bedeutet: Wähle einen von mehreren Wegen basierend auf einer Bedingung.
 
-```
-        Bedingung?
-        /        \
-      JA         NEIN
-      ↓           ↓
-  Weg A       Weg B
+```mermaid
+graph TD
+    Check{"Bedingung?"}
+    Yes["✓ JA<br/>Weg A"]
+    No["✗ NEIN<br/>Weg B"]
+
+    Check -->|true| Yes
+    Check -->|false| No
 ```
 
 ## Einfache Selektion: If-Else

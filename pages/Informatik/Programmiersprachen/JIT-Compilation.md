@@ -2,13 +2,20 @@
 
 ## Das Problem: Interpretation ist langsam
 
-```
-Jedes Mal wenn Code läuft:
-Line 1: Lesen → Parse → Ausführen
-Line 2: Lesen → Parse → Ausführen
-...
+```mermaid
+graph TD
+    Start["Jedes Mal wenn Code läuft"]
+    L1["Linie 1: Lesen → Parse → Ausführen"]
+    L2["Linie 2: Lesen → Parse → Ausführen"]
+    L3["..."]
+    Problem["⚠️ Parse-Overhead bei jedem Durchlauf!"]
 
-Das ist langsam weil Parse-Overhead!
+    Start --> L1
+    L1 --> L2
+    L2 --> L3
+    L3 --> Problem
+
+    style Problem fill:#ffcccc
 ```
 
 ## Die Lösung: JIT
@@ -20,6 +27,32 @@ Das ist langsam weil Parse-Overhead!
 Dann beim nächsten Aufruf: kein Parsing nötig, direkt Maschinencode!
 
 ## Wie funktioniert's?
+
+### JIT Compilation Pipeline
+
+```mermaid
+graph TD
+    Start["🚀 Method wird aufgerufen"]
+    Count1["Zähler < Threshold<br/>(z.B. 10.000)"]
+    Interp["🔍 Interpretiert<br/>(langsam aber ok)"]
+    Count2["Zähler >= Threshold<br/>Hot Method erkannt!"]
+    JIT["⚡ JIT Compiler lädt<br/>Bytecode → Maschinencode"]
+    Cache["💾 Maschinencode<br/>in Memory gecacht"]
+    FastExe["▶️ Nächste Aufrufe<br/>verwenden Cache<br/>(schnell!)"]
+
+    Start --> Count1
+    Count1 -->|JA| Interp
+    Interp --> Count1
+    Count1 -->|NEIN| Count2
+    Count2 --> JIT
+    JIT --> Cache
+    Cache --> FastExe
+
+    style Interp fill:#fff9c4
+    style JIT fill:#f3e5f5
+    style Cache fill:#c8e6c9
+    style FastExe fill:#a5d6a7
+```
 
 ### Schritt 1: Profiling (Monitoring)
 

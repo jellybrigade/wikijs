@@ -12,16 +12,21 @@ Ein **Algorithmus** ist eine präzise, schrittweise Anweisung zur Lösung eines 
 
 ## Von Problem zu Algorithmus
 
-```
-Natürlichsprachige Problem-Formulierung (Deutsch/Englisch)
-    ↓
-Analyse: Was ist Input? Was ist Output?
-    ↓
-Zerteilen: Große Probleme → kleine Teilprobleme
-    ↓
-Algorithmen-Entwurf in Notationssprache
-    ↓
-Programmierung (Java, Python, etc.)
+```mermaid
+graph TD
+    A["📝 Natürlichsprachige<br/>Problem-Formulierung<br/>(Deutsch/Englisch)"]
+    B["🔍 Analyse:<br/>Input? Output?"]
+    C["🧩 Zerteilen:<br/>Große Probleme<br/>→ kleine Teilprobleme"]
+    D["🎨 Algorithmen-Entwurf<br/>in Notationssprache"]
+    E["💻 Programmierung<br/>(Java, Python, etc.)"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+
+    style A fill:#fff9c4
+    style E fill:#a5d6a7
 ```
 
 ## Notationssprachen (Darstellung)
