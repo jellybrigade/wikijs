@@ -4,13 +4,13 @@ Ein Programmierparadigma ist das grundlegende Denkmodell, nach dem ein Programm 
 
 ## Vergleich
 
-| Paradigma | Kernidee | Vertreter |
-|---|---|---|
-| Imperativ | Anweisung für Anweisung, Sprungbefehle | Assembler, Fortran |
-| Prozedural | Aufteilung in Unterprogramme, Daten getrennt von Logik | Pascal, Delphi, C |
-| Objektorientiert | Alles ist ein Objekt mit Zustand und Verhalten | Java, C#, Python |
-| Funktional | Funktionen als Werte, keine Seiteneffekte | Lisp, Scala, Haskell |
-| Logisch | Fakten und Regeln, Ergebnis wird hergeleitet | Prolog |
+| Paradigma | Kernidee | Vertreter | Wann sinnvoll? |
+|---|---|---|---|
+| Imperativ | Anweisung für Anweisung, Sprungbefehle | Assembler, Fortran | Hardware-nahe Programmierung, Treiber |
+| Prozedural | Aufteilung in Unterprogramme, Daten getrennt von Logik | Pascal, Delphi, C | Skripte, klar strukturierte Programme ohne komplexe Daten |
+| Objektorientiert | Alles ist ein Objekt mit Zustand und Verhalten | Java, C#, Python | Große Softwareprojekte, GUI-Anwendungen, Geschäftslogik |
+| Funktional | Funktionen als Werte, keine Seiteneffekte | Lisp, Scala, Haskell | Datenverarbeitung, parallele Systeme, wo Zustand Probleme macht |
+| Logisch | Fakten und Regeln, Ergebnis wird hergeleitet | Prolog | KI, natürliche Sprachverarbeitung, Constraint-Probleme |
 
 ## Imperativ
 

@@ -7,9 +7,10 @@ Kontrollstrukturen bestimmen den Ablauf eines Programms. Es gibt drei Grundstruk
 Anweisungen werden der Reihe nach ausgeführt.
 
 ```java
-int a = 5;
-int b = 3;
-int summe = a + b;
+// Fläche eines Rechtecks berechnen
+int breite = 5;
+int hoehe = 3;
+int flaeche = breite * hoehe;
 ```
 
 ## Selektion (Auswahlstruktur)
@@ -17,27 +18,29 @@ int summe = a + b;
 ### Einfache Alternative
 
 ```java
-if (bedingung) {
-    // Anweisung A
-} else if (andereBedingung) {
-    // Anweisung B
+// Note ausgeben
+if (punkte >= 90) {
+    System.out.println("Sehr gut");
+} else if (punkte >= 75) {
+    System.out.println("Gut");
 } else {
-    // Anweisung C
+    System.out.println("Nicht bestanden");
 }
 ```
 
 ### Mehrfache Alternative
 
 ```java
-switch (ausdruck) {
-    case A1:
-        // Anweisung 1
+// Wochentag ausgeben
+switch (tag) {
+    case 1:
+        System.out.println("Montag");
         break;
-    case A2:
-        // Anweisung 2
+    case 2:
+        System.out.println("Dienstag");
         break;
     default:
-        // Anweisung Else
+        System.out.println("Anderer Tag");
         break;
 }
 ```
@@ -51,8 +54,11 @@ switch (ausdruck) {
 Die Bedingung wird **vor** jedem Durchlauf geprüft. Ist sie von Anfang an falsch, wird der Block nie ausgeführt.
 
 ```java
-while (bedingung) {
-    // Anweisung
+// Zahlen 1 bis 5 ausgeben
+int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
 }
 ```
 
@@ -61,9 +67,11 @@ while (bedingung) {
 Die Bedingung wird **nach** jedem Durchlauf geprüft. Der Block wird mindestens einmal ausgeführt.
 
 ```java
+// Eingabe wiederholen bis gültig
+int eingabe;
 do {
-    // Anweisung
-} while (bedingung);
+    eingabe = scanner.nextInt();
+} while (eingabe < 0);
 ```
 
 ### Zählschleife
@@ -71,17 +79,20 @@ do {
 `for` ist eine kompakte Kurzform für eine kopfgesteuerte Schleife mit Zähler.
 
 ```java
-for (int i = 0; i < n; i++) {
-    // Anweisung
+// Summe von 1 bis 10 berechnen
+int summe = 0;
+for (int i = 1; i <= 10; i++) {
+    summe += i;
 }
 ```
 
 Äquivalent als `while`:
 
 ```java
-int i = 0;
-while (i < n) {
-    // Anweisung
+int summe = 0;
+int i = 1;
+while (i <= 10) {
+    summe += i;
     i++;
 }
 ```

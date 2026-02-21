@@ -56,7 +56,7 @@ JIT ist eine Optimierung in Hybrid-Systemen. Die VM erkennt zur Laufzeit, welche
 Bevor ein Compiler oder Interpreter Source Code verarbeiten kann, muss er ihn verstehen. Das geschieht in zwei Schritten:
 
 ```mermaid
-flowchart LR
+flowchart TD
     SC[Source Code] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
     TOK -->|Parser / Syntaxanalyse| AST[Syntaxbaum]
     AST --> EXE[Codegenerierung / Ausführung]
