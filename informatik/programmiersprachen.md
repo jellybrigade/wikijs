@@ -2,10 +2,13 @@
 
 ## Klassifizierungen
 
-Programmiersprachen werden nach zwei relevanten Kriterien klassifiziert:
+Programmiersprachen werden nach drei Kriterien klassifiziert:
 
 - **Maschinennähe:** Wie nah ist die Sprache an der Hardware?
 - **Programmierparadigma:** Welches Denkmodell liegt zugrunde? (siehe [Programmierparadigmen](programmierparadigmen.md))
+- **Generation:** Historische Einordnung — für den Unterricht nicht relevant.
+
+Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschinensprache** übersetzt.
 
 ## Hierarchie der Maschinennähe
 
@@ -38,9 +41,9 @@ flowchart TD
 
 | Strategie | Vorgehen | Vertreter | Portabilität |
 |---|---|---|---|
-| Compiler | Source Code → Maschinencode, dann Ausführung | C, C++ | Gering — Code ist plattformspezifisch |
-| Interpreter | Source Code wird direkt Schritt für Schritt ausgeführt | Python, JavaScript | Hoch — Interpreter muss installiert sein |
-| Hybrid | Source Code → Bytecode → Ausführung durch VM | Java, C# | Hoch — Bytecode läuft auf jeder JVM/CLR |
+| Compiler | Source Code wird vollständig in Maschinencode übersetzt, daraus entsteht eine eigenständige ausführbare Datei | C, C++ | Gering — Code ist plattformspezifisch |
+| Interpreter | Source Code wird während der Ausführung Anweisung für Anweisung aus der Quelldatei gelesen, übersetzt und sofort ausgeführt | Python, JavaScript | Hoch — Interpreter muss installiert sein |
+| Hybrid | Source Code → Bytecode (Compiler), Bytecode → Ausführung durch VM/JRE (Interpreter) | Java, C# | Hoch — Bytecode läuft auf jeder JVM/CLR |
 
 **Portabilität:** Compilierter Code ist direkt auf die Zielarchitektur zugeschnitten und nicht portabel. Bytecode hingegen läuft überall, wo die passende virtuelle Maschine installiert ist — das ist das Prinzip "Write Once, Run Anywhere" von Java.
 

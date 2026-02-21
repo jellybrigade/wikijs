@@ -9,7 +9,7 @@ Das Schwierige — auch bei KI — ist oft nicht das Codieren, sondern das **pr�
 ## Phasenmodell
 
 ```mermaid
-flowchart LR
+flowchart TD
     PD[Problemdefinition]
     AM[Analyse und Modellierung]
     AB[Algorithmische Beschreibung]
@@ -61,7 +61,7 @@ Weiterführend: [PAP (Wikipedia)](https://de.wikipedia.org/wiki/Programmablaufpl
 
 ### Nassi-Shneidermann (Struktogramm)
 
-Grafisch wie der PAP, aber ohne Pfeile. Jede Struktur (Sequenz, Selektion, Iteration) ist ein geschachtelter Block. Das erzwingt strukturierten Code — Spaghetti-Sprunges wie `goto` lassen sich gar nicht darstellen.
+Grafisch wie der PAP, aber ohne Pfeile. Jede Struktur (Sequenz, Selektion, Iteration) ist ein geschachtelter Block. Das erzwingt strukturierten Code — Spaghetti-Sprünge wie `goto` lassen sich gar nicht darstellen. Norm: **DIN 66261**.
 
 ![Nassi-Shneidermann Grundstrukturen](../assets/images/nassi-shneidermann-grundstrukturen.png)
 

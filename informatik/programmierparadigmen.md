@@ -22,7 +22,11 @@ Eine Weiterentwicklung des imperativen Paradigmas. Das Programm wird in **Prozed
 
 ## Objektorientiert
 
-Das Programm besteht aus **Objekten**, die Daten (Attribute) und Verhalten (Methoden) kapseln. Jedes Objekt ist eine Instanz einer **Klasse**.
+Das Programm besteht aus **Objekten**, die Daten (Attribute) und Verhalten (Methoden) kapseln. Jedes Objekt ist eine Instanz einer **Klasse** und hat drei Eigenschaften:
+
+- **Identität** — jedes Objekt ist eindeutig unterscheidbar, auch wenn zwei Objekte dieselben Attributwerte haben
+- **Zustand** — die aktuellen Werte der Attribute
+- **Verhalten** — die Methoden, die das Objekt ausführen kann
 
 Aufbau einer Klasse:
 
@@ -36,11 +40,20 @@ Beispiel-Analogie aus dem Unterricht: Die Klasse `Schueler` hat Attribute wie `n
 
 Das zentrale Prinzip ist **Kapselung (Encapsulation):** Attribute sind nach außen verborgen (`private`), der Zugriff erfolgt nur über Methoden.
 
+**Vererbung** ermöglicht es einer Klasse, Eigenschaften und Methoden einer anderen Klasse zu übernehmen und zu erweitern — ohne den Code zu duplizieren.
+
 Weiterführend: [Vererbung (Wikipedia)](https://de.wikipedia.org/wiki/Vererbung_(Programmierung)) · [Polymorphismus (Wikipedia)](https://de.wikipedia.org/wiki/Polymorphie_(Programmierung))
 
 ## Funktional
 
-Im funktionalen Paradigma sind Funktionen gleichwertige Werte — sie können als Argumente übergeben, zurückgegeben und gespeichert werden (First-Class Functions). Programme werden als Komposition von Funktionen beschrieben. Variablen sind unveränderlich, Seiteneffekte werden vermieden. Das macht Programme leichter nachvollziehbar und testbar.
+Im funktionalen Paradigma sind Funktionen gleichwertige Werte — sie können als Argumente übergeben, zurückgegeben und gespeichert werden (First-Class Functions). Das Paradigma basiert auf dem Konzept mathematischer Funktionen: Der Rückgabewert hängt ausschließlich von den übergebenen Argumenten ab, nicht von einem externen Zustand.
+
+- Variablen sind **unveränderlich** — einmal gesetzt, nicht mehr änderbar
+- Keine Seiteneffekte: Eine Funktion verändert nichts außerhalb ihres Scopes
+- Der Fokus liegt auf dem **Ergebnis** (was berechnet wird), nicht auf dem Prozess (wie)
+- Schleifen und klassische bedingte Anweisungen werden vermieden — stattdessen Rekursion und Ausdrücke
+
+Vertreter: Lisp, Scala, Haskell
 
 ## Logisch
 
