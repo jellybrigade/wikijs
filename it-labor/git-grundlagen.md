@@ -6,7 +6,9 @@ Git ist ein verteiltes Versionskontrollsystem. Es speichert Snapshots (Commits) 
 
 ## Workflow
 
-```mermaid
+```kroki
+mermaid
+
 flowchart LR
     RR[Remote Repository]
     LR_[Local Repository]
