@@ -68,46 +68,59 @@ Weiterführend: [Queue](https://de.wikipedia.org/wiki/Warteschlange_(Datenstrukt
 
 ### Stack — Ablauf (LIFO)
 
-```
-Push A  →  [ A ]
-Push B  →  [ A, B ]
-Push C  →  [ A, B, C ]
-Pop     →  [ A, B ]     Ergebnis: C  ← zuletzt rein, zuerst raus
-Pop     →  [ A ]        Ergebnis: B
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph TB
+    pp(["Push ↓ / Pop ↑"])
+    C["C — zuletzt rein, zuerst raus"]
+    B["B"]
+    A["A — zuerst rein, zuletzt raus"]
+    pp --- C --- B --- A
 ```
 
 Analogie: Ein Stapel Bücher — man nimmt immer das oberste.
 
 ### Queue — Ablauf (FIFO)
 
-```
-Enqueue A  →  [ A ]
-Enqueue B  →  [ A, B ]
-Enqueue C  →  [ A, B, C ]
-Dequeue    →  [ B, C ]     Ergebnis: A  ← zuerst rein, zuerst raus
-Dequeue    →  [ C ]        Ergebnis: B
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph LR
+    eq(["Enqueue"]) -->|"hinten"| C["C"] --> B["B"] --> A["A"] -->|"vorne"| dq(["Dequeue"])
 ```
 
 Analogie: Eine Warteschlange — wer zuerst kommt, wird zuerst bedient.
 
 ### Linked List — Aufbau
 
-```
-[ A ] → [ B ] → [ C ] → [ D ] → null
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph LR
+    A["A"] -->|"next"| B["B"] -->|"next"| C["C"] -->|"next"| D["D"] -->|"next"| N(["null"])
 ```
 
 Jedes Element (Knoten) enthält einen Wert und einen Zeiger auf das nächste Element. Im Gegensatz zum Array sind Elemente nicht zusammenhängend im Speicher — Einfügen und Löschen ist an beliebiger Stelle schnell, direkter Index-Zugriff aber langsam.
 
 ### Binärbaum — Aufbau
 
-```
-        [ 8 ]
-       /     \
-    [ 3 ]   [ 10 ]
-    /   \       \
- [ 1 ] [ 6 ]  [ 14 ]
-        / \    /
-      [4] [7] [13]
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph TD
+    n8["8"] --> n3["3"]
+    n8 --> n10["10"]
+    n3 --> n1["1"]
+    n3 --> n6["6"]
+    n6 --> n4["4"]
+    n6 --> n7["7"]
+    n10 --> n14["14"]
+    n14 --> n13["13"]
 ```
 
 - Jeder Knoten hat maximal zwei Kinder (links, rechts)
@@ -116,11 +129,16 @@ Jedes Element (Knoten) enthält einen Wert und einen Zeiger auf das nächste Ele
 
 ### Graph — Aufbau
 
-```
-  A --- B
-  |   / |
-  |  /  |
-  C --- D
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph LR
+    A --- B
+    A --- C
+    B --- C
+    B --- D
+    C --- D
 ```
 
 - **Knoten (Nodes):** einzelne Datenpunkte (A, B, C, D)

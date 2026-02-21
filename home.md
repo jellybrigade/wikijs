@@ -1,10 +1,10 @@
 ---
 title: home
-description: 
+description:
 published: 1
 date: 2026-02-21T08:12:22.740Z
-tags: 
-editor: markdown
+tags:
+editor: markdown2
 dateCreated: 2026-02-21T07:24:37.237Z
 ---
 
