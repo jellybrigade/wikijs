@@ -1,6 +1,16 @@
-# Schulwiki — Informatiklehrgang
+---
+title: home
+description: 
+published: 1
+date: 2026-02-21T08:12:22.740Z
+tags: 
+editor: markdown
+dateCreated: 2026-02-21T07:24:37.237Z
+---
 
-Mitschriften und Zusammenfassungen des Informatiklehrgangs, beginnend mit Woche 1.
+# Notizen - Informatik und ITL-1
+
+Meine Notizen zu Informatik und ITL-1. Vielleicht nützlich.
 
 ---
 
