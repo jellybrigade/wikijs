@@ -15,7 +15,10 @@ Unter Linux läuft Docker nativ. Unter Windows läuft Docker Desktop über eine 
 | `Dockerfile` | Definiert einen einzelnen Container |
 | `docker-compose.yml` | Orchestriert mehrere Container gemeinsam |
 
-```mermaid
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart LR
     DF[Dockerfile]
     DC[docker-compose.yml]

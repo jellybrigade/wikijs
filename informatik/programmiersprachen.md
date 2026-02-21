@@ -12,7 +12,10 @@ Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschi
 
 ## Hierarchie der Maschinennähe
 
-```mermaid
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     MS["Maschinensprache\n0010 0101 0011 0100"]
     AS["Assembler\nmov ax, 2"]
@@ -28,7 +31,10 @@ flowchart TD
 
 Jede Hochsprache muss irgendwie zur Maschinensprache gelangen. Es gibt drei Strategien:
 
-```mermaid
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SRC[Source Code]
 
@@ -57,7 +63,10 @@ JIT ist eine Optimierung in Hybrid-Systemen. Die VM erkennt zur Laufzeit, welche
 
 Bevor ein Compiler oder Interpreter Source Code verarbeiten kann, muss er ihn verstehen. Das geschieht in zwei Schritten:
 
-```mermaid
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SC[Source Code] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
     TOK -->|Parser / Syntaxanalyse| AST[Syntaxbaum]
