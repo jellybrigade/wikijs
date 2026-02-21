@@ -15,11 +15,14 @@ Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschi
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 25}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
-    MS["Maschinensprache\n0010 0101 0011 0100"]
-    AS["Assembler\nmov ax, 2"]
-    HS["Hochsprachenprogrammierung\nJava, Python, C"]
+    MS["Maschinensprache
+0010 0101 0011 0100"]
+    AS["Assembler
+mov ax, 2"]
+    HS["Hochsprachenprogrammierung
+Java, Python, C"]
 
     HS -->|Compiler / Interpreter| AS
     AS -->|Assembler-Programm| MS
@@ -34,16 +37,16 @@ Jede Hochsprache muss irgendwie zur Maschinensprache gelangen. Es gibt drei Stra
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 25}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SRC[Source Code]
 
-    SRC -->|Compiler: C, C++| MC[Maschinencode]
+    SRC -->|Compiler| MC[Maschinencode]
     MC --> EXEC1[Ausführung]
 
-    SRC -->|Interpreter: Python, JS| EXEC2[Direkte Ausführung]
+    SRC -->|Interpreter| EXEC2[Direkte Ausführung]
 
-    SRC -->|Hybrid: Java, C#35;| BC[Bytecode]
+    SRC -->|Hybrid| BC[Bytecode]
     BC -->|JVM / CLR + JIT| EXEC3[Ausführung]
 ```
 
@@ -66,7 +69,7 @@ Bevor ein Compiler oder Interpreter Source Code verarbeiten kann, muss er ihn ve
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 25}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SC[Source Code] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
     TOK -->|Parser / Syntaxanalyse| AST[Syntaxbaum]
