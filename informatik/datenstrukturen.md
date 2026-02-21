@@ -22,6 +22,7 @@ mindmap
       Stack
       Hash
       Tree
+      Graph
 ```
 
 ## Einfache Datentypen
@@ -58,6 +59,7 @@ Diese Strukturen beschreiben, wie Daten verwaltet werden — nicht nur gespeiche
 | Stack | Bücherstapel | Last In, First Out (LIFO) |
 | Hash | Wörterbuch / Index | Direkter Zugriff über Schlüssel, sehr schnell |
 | Tree | Stammbaum | Hierarchische Struktur mit Eltern- und Kindknoten |
+| Graph | Straßennetz / Netzwerk | Knoten verbunden durch Kanten, gerichtet oder ungerichtet |
 
 Weiterführend: [Queue](https://de.wikipedia.org/wiki/Warteschlange_(Datenstruktur)) · [Stack](https://de.wikipedia.org/wiki/Stapelspeicher) · [Hashtabelle](https://de.wikipedia.org/wiki/Hashtabelle) · [Baum](https://de.wikipedia.org/wiki/Baum_(Datenstruktur))
 
@@ -85,6 +87,60 @@ Dequeue    →  [ C ]        Ergebnis: B
 
 Analogie: Eine Warteschlange — wer zuerst kommt, wird zuerst bedient.
 
+### Linked List — Aufbau
+
+```
+[ A ] → [ B ] → [ C ] → [ D ] → null
+```
+
+Jedes Element (Knoten) enthält einen Wert und einen Zeiger auf das nächste Element. Im Gegensatz zum Array sind Elemente nicht zusammenhängend im Speicher — Einfügen und Löschen ist an beliebiger Stelle schnell, direkter Index-Zugriff aber langsam.
+
+### Binärbaum — Aufbau
+
+```
+        [ 8 ]
+       /     \
+    [ 3 ]   [ 10 ]
+    /   \       \
+ [ 1 ] [ 6 ]  [ 14 ]
+        / \    /
+      [4] [7] [13]
+```
+
+- Jeder Knoten hat maximal zwei Kinder (links, rechts)
+- Im Binary Search Tree (BST): linkes Kind < Elternknoten < rechtes Kind
+- Suche, Einfügen, Löschen in O(log n) — deutlich schneller als lineare Suche
+
+### Graph — Aufbau
+
+```
+  A --- B
+  |   / |
+  |  /  |
+  C --- D
+```
+
+- **Knoten (Nodes):** einzelne Datenpunkte (A, B, C, D)
+- **Kanten (Edges):** Verbindungen zwischen Knoten
+- **Ungerichtet (`—`):** Verbindung gilt in beide Richtungen
+- **Gerichtet (`→`):** Verbindung gilt nur in eine Richtung (z. B. Einbahnstraße)
+- Anwendungen: Routenplanung, soziale Netzwerke, Paketabhängigkeiten
+
+## Zeitkomplexität im Vergleich
+
+Wie schnell ist eine Operation? Angabe in [Big-O-Notation](https://de.wikipedia.org/wiki/Landau-Symbole) (Worst Case).
+
+| Struktur | Zugriff | Suche | Einfügen | Löschen |
+|---|---|---|---|---|
+| Array | O(1) | O(n) | O(n) | O(n) |
+| Linked List | O(n) | O(n) | O(1)* | O(1)* |
+| Stack | — | O(n) | O(1) | O(1) |
+| Queue | — | O(n) | O(1) | O(1) |
+| Hash / Map | O(1) | O(1) | O(1) | O(1) |
+| Binärbaum (BST) | O(log n) | O(log n) | O(log n) | O(log n) |
+
+\* bei bekannter Position
+
 ## Wann welche Datenstruktur?
 
 | Situation | Geeignete Struktur |
@@ -96,3 +152,5 @@ Analogie: Eine Warteschlange — wer zuerst kommt, wird zuerst bedient.
 | Verarbeitung in Reihenfolge des Eintreffens | Queue |
 | Rückgängig-Funktion oder verschachtelter Aufruf | Stack |
 | Hierarchische Daten (Ordner, Kategorien) | Tree |
+| Netzwerke, Routen, Beziehungen zwischen Objekten | Graph |
+| Viele Einfüge-/Löschoperationen, kein Index-Zugriff nötig | Linked List |
