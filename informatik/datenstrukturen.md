@@ -1,9 +1,9 @@
 ---
 title: datenstrukturen
-description: 
+description:
 published: 1
-date: 2026-02-21T10:57:29.724Z
-tags: 
+date: 2026-02-21T10:53:58.440Z
+tags:
 editor: markdown
 dateCreated: 2026-02-21T07:24:43.106Z
 ---
@@ -15,27 +15,18 @@ dateCreated: 2026-02-21T07:24:43.106Z
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#e8e8e8', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#d0d0d0', 'nodeTextColor': '#fff', 'clusterBkg': '#d0d0d0'}}}%%
-mindmap
-  root((Datenstrukturen))
-    Einfach
-      Integer
-      Float
-      String
-      Char
-      Bool
-    Zusammengesetzt
-      Array
-      Record
-      List
-      Set
-      Map
-    Anschaulich
-      Queue
-      Stack
-      Hash
-      Tree
-      Graph
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+graph TD
+    root(("Datenstrukturen"))
+
+    root --> E["Einfach"]
+    E --> Integer & Float & String & Char & Bool
+
+    root --> Z["Zusammengesetzt"]
+    Z --> Array & Record & List & Set & Map
+
+    root --> A["Anschaulich"]
+    A --> Queue & Stack & Hash & Tree & Graph
 ```
 
 ## Einfache Datentypen
