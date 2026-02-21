@@ -38,6 +38,34 @@ Aufbau einer Klasse:
 
 Beispiel-Analogie aus dem Unterricht: Die Klasse `Schueler` hat Attribute wie `name`, `alter`, `geschlecht` und Methoden wie `lernen()`, `schlafen()`. Zwei Instanzen dieser Klasse (zwei Schüler) teilen dieselbe Struktur, haben aber unterschiedliche Attributwerte.
 
+```java
+public class Schueler {
+    // Attribute (privat — Kapselung)
+    private String name;
+    private int alter;
+
+    // Konstruktor
+    public Schueler(String name, int alter) {
+        this.name = name;
+        this.alter = alter;
+    }
+
+    // Methoden
+    public void lernen() {
+        System.out.println(name + " lernt.");
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+// Zwei Instanzen derselben Klasse
+Schueler s1 = new Schueler("Anna", 16);
+Schueler s2 = new Schueler("Max", 17);
+s1.lernen(); // Anna lernt.
+```
+
 Das zentrale Prinzip ist **Kapselung (Encapsulation):** Attribute sind nach außen verborgen (`private`), der Zugriff erfolgt nur über Methoden.
 
 **Vererbung** ermöglicht es einer Klasse, Eigenschaften und Methoden einer anderen Klasse zu übernehmen und zu erweitern — ohne den Code zu duplizieren.

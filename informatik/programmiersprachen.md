@@ -12,12 +12,14 @@ Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschi
 
 ## Hierarchie der Maschinennähe
 
-```
-Maschinensprache  (0010 0101 0011 0100)
-      ↓
-Assembler  (mov ax, 2)
-      ↓
-Hochsprachenprogrammierung  (Java, Python, C)
+```mermaid
+flowchart TD
+    MS["Maschinensprache\n0010 0101 0011 0100"]
+    AS["Assembler\nmov ax, 2"]
+    HS["Hochsprachenprogrammierung\nJava, Python, C"]
+
+    HS -->|Compiler / Interpreter| AS
+    AS -->|Assembler-Programm| MS
 ```
 
 **Maschinensprache** ist direkt ausführbarer Binärcode. **Assembler** ist eine mnemonische Darstellung davon — Befehle wie `mov ax, 2` manipulieren Register direkt. Die ALU (Arithmetic Logic Unit) führt die eigentlichen Rechenoperationen durch. Das Übersetzungsprogramm von Assembler-Code zu Maschinencode heißt ebenfalls Assembler.

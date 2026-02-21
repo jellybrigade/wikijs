@@ -61,6 +61,30 @@ Diese Strukturen beschreiben, wie Daten verwaltet werden — nicht nur gespeiche
 
 Weiterführend: [Queue](https://de.wikipedia.org/wiki/Warteschlange_(Datenstruktur)) · [Stack](https://de.wikipedia.org/wiki/Stapelspeicher) · [Hashtabelle](https://de.wikipedia.org/wiki/Hashtabelle) · [Baum](https://de.wikipedia.org/wiki/Baum_(Datenstruktur))
 
+### Stack — Ablauf (LIFO)
+
+```
+Push A  →  [ A ]
+Push B  →  [ A, B ]
+Push C  →  [ A, B, C ]
+Pop     →  [ A, B ]     Ergebnis: C  ← zuletzt rein, zuerst raus
+Pop     →  [ A ]        Ergebnis: B
+```
+
+Analogie: Ein Stapel Bücher — man nimmt immer das oberste.
+
+### Queue — Ablauf (FIFO)
+
+```
+Enqueue A  →  [ A ]
+Enqueue B  →  [ A, B ]
+Enqueue C  →  [ A, B, C ]
+Dequeue    →  [ B, C ]     Ergebnis: A  ← zuerst rein, zuerst raus
+Dequeue    →  [ C ]        Ergebnis: B
+```
+
+Analogie: Eine Warteschlange — wer zuerst kommt, wird zuerst bedient.
+
 ## Wann welche Datenstruktur?
 
 | Situation | Geeignete Struktur |
