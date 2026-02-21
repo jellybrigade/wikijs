@@ -28,6 +28,10 @@ Thumbs.db
 # Build & Logs
 *.log
 *.swp
+
+# Lokale Planungsdateien
+_todo-links.md
+PLAN.md
 *~
 .gradle
 node_modules/
