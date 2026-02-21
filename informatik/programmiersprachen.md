@@ -15,7 +15,7 @@ Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschi
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     MS["Maschinensprache
 0010 0101 0011 0100"]
@@ -37,7 +37,7 @@ Jede Hochsprache muss irgendwie zur Maschinensprache gelangen. Es gibt drei Stra
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SRC[Source Code]
 
@@ -69,7 +69,7 @@ Bevor ein Compiler oder Interpreter Source Code verarbeiten kann, muss er ihn ve
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'flowchart': {'padding': 60, 'useMaxWidth': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     SC[Source Code] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
     TOK -->|Parser / Syntaxanalyse| AST[Syntaxbaum]
