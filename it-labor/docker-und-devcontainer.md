@@ -63,4 +63,4 @@ Eine **Klasse** ist ein Bauplan für Objekte. Sie beschreibt, welche Eigenschaft
 
 Eine **Methode** ist eine Funktion, die zu einer Klasse gehört und eine Operation beschreibt, die ein Objekt ausführen kann. `addieren(int a, int b)` ist eine Methode der Klasse `Taschenrechner`.
 
-Mehr zum Thema: [Programmierparadigmen — Objektorientiert](../informatik/programmierparadigmen.md)
+Mehr zum Thema: [Programmierparadigmen — Objektorientiert](../informatik/programmierparadigmen)

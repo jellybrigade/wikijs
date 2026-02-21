@@ -1,6 +1,6 @@
 # Kontrollstrukturen
 
-Kontrollstrukturen bestimmen den Ablauf eines Programms. Es gibt drei Grundstrukturen (siehe [Phasenmodell](phasenmodell.md)).
+Kontrollstrukturen bestimmen den Ablauf eines Programms. Es gibt drei Grundstrukturen (siehe [Phasenmodell](phasenmodell)).
 
 ## Sequenz (Anweisungsfolge)
 

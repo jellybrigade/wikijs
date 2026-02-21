@@ -14,7 +14,7 @@ Ein Programmierparadigma ist das grundlegende Denkmodell, nach dem ein Programm 
 
 ## Imperativ
 
-Das älteste Paradigma: Das Programm ist eine Folge von Anweisungen, die der Computer der Reihe nach ausführt. Sprünge (`goto`) ermöglichen Verzweigungen. Führt ohne Disziplin zu unübersichtlichem "Spaghetti Code" — der Hauptgrund für die strukturierte Programmierung (siehe [Phasenmodell](phasenmodell.md)).
+Das älteste Paradigma: Das Programm ist eine Folge von Anweisungen, die der Computer der Reihe nach ausführt. Sprünge (`goto`) ermöglichen Verzweigungen. Führt ohne Disziplin zu unübersichtlichem "Spaghetti Code" — der Hauptgrund für die strukturierte Programmierung (siehe [Phasenmodell](phasenmodell)).
 
 ## Prozedural
 

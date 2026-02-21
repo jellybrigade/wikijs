@@ -5,7 +5,7 @@
 Programmiersprachen werden nach drei Kriterien klassifiziert:
 
 - **Maschinennähe:** Wie nah ist die Sprache an der Hardware?
-- **Programmierparadigma:** Welches Denkmodell liegt zugrunde? (siehe [Programmierparadigmen](programmierparadigmen.md))
+- **Programmierparadigma:** Welches Denkmodell liegt zugrunde? (siehe [Programmierparadigmen](programmierparadigmen))
 - **Generation:** Historische Einordnung — für den Unterricht nicht relevant.
 
 Alle Programmiersprachen haben eines gemeinsam: Sie werden letztlich in **Maschinensprache** übersetzt.

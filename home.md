@@ -8,28 +8,28 @@ Mitschriften und Zusammenfassungen des Informatiklehrgangs, beginnend mit Woche 
 
 Java, Git, Docker und Entwicklungsumgebungen.
 
-- [Übersicht](it-labor/uebersicht.md) — Kursinfo, Lehrer, Rahmenbedingungen
-- [Entwicklungsumgebung](it-labor/entwicklungsumgebung.md) — VSCode, WSL, Devcontainer
-- [Git-Grundlagen](it-labor/git-grundlagen.md) — Workflow, Befehle, Diagramm
-- [Git-Konfiguration](it-labor/git-konfiguration.md) — .gitignore, .gitattributes
-- [Docker und Devcontainer](it-labor/docker-und-devcontainer.md) — Docker, Maven, TDD
+- [Übersicht](it-labor/uebersicht) — Kursinfo, Lehrer, Rahmenbedingungen
+- [Entwicklungsumgebung](it-labor/entwicklungsumgebung) — VSCode, WSL, Devcontainer
+- [Git-Grundlagen](it-labor/git-grundlagen) — Workflow, Befehle, Diagramm
+- [Git-Konfiguration](it-labor/git-konfiguration) — .gitignore, .gitattributes
+- [Docker und Devcontainer](it-labor/docker-und-devcontainer) — Docker, Maven, TDD
 
 ## Informatik
 
 Grundlagen der Programmiertechnik: Algorithmen, Datenstrukturen, Sprachen und Paradigmen.
 
-- [Übersicht](informatik/uebersicht.md) — Kursinfo, Lehrplan, Concept Map
-- [Datenstrukturen](informatik/datenstrukturen.md) — Einfache Typen, zusammengesetzte Strukturen
-- [Programmiersprachen](informatik/programmiersprachen.md) — Klassifizierung, Compiler, JIT
-- [Programmierparadigmen](informatik/programmierparadigmen.md) — Imperativ bis OOP
-- [Phasenmodell](informatik/phasenmodell.md) — Algorithmen, Notation, Dijkstra
-- [Kontrollstrukturen](informatik/kontrollstrukturen.md) — Sequenz, Selektion, Iteration
+- [Übersicht](informatik/uebersicht) — Kursinfo, Lehrplan, Concept Map
+- [Datenstrukturen](informatik/datenstrukturen) — Einfache Typen, zusammengesetzte Strukturen
+- [Programmiersprachen](informatik/programmiersprachen) — Klassifizierung, Compiler, JIT
+- [Programmierparadigmen](informatik/programmierparadigmen) — Imperativ bis OOP
+- [Phasenmodell](informatik/phasenmodell) — Algorithmen, Notation, Dijkstra
+- [Kontrollstrukturen](informatik/kontrollstrukturen) — Sequenz, Selektion, Iteration
 
 ---
 
 ## Schnellzugriff
 
-- [Git-Workflow-Diagramm](it-labor/git-grundlagen.md)
-- [Compiler vs. Interpreter vs. Hybrid](informatik/programmiersprachen.md)
-- [Phasenmodell-Pipeline](informatik/phasenmodell.md)
+- [Git-Workflow-Diagramm](it-labor/git-grundlagen)
+- [Compiler vs. Interpreter vs. Hybrid](informatik/programmiersprachen)
+- [Phasenmodell-Pipeline](informatik/phasenmodell)
 
