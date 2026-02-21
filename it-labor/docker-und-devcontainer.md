@@ -40,6 +40,15 @@ Maven ist ein Build-Tool für Java-Projekte. Es verwaltet Abhängigkeiten, kompi
 
 Ein **Maven Archetype** ist eine vorgefertigte Projektstruktur — ähnlich einem Template. Damit wird ein neues Projekt mit dem korrekten Verzeichnis-Layout, einer `pom.xml` und Beispieldateien erstellt, ohne alles manuell anlegen zu müssen.
 
+### Neues Maven-Projekt in VSCode
+
+1. Command Palette öffnen (`Ctrl+Shift+P`)
+2. **Update Maven Archetype Catalogue** — beim ersten Mal den Katalog aktualisieren, damit alle verfügbaren Archetypes geladen werden
+3. **Maven: Create Maven Project** auswählen
+4. Archetype wählen: **maven-archetype-quickstart** — der Standard für ein einfaches Java-Projekt mit `src/main/java` und `src/test/java`
+5. Group ID eingeben (z. B. `at.schule`), Artifact ID (Projektname), Version bestätigen
+6. Speicherort wählen — Maven legt den Projektordner automatisch an
+
 ## Test-Driven Development (TDD)
 
 Beim TDD wird zuerst der Test geschrieben, dann der Code. Der Zyklus lautet Red → Green → Refactor: Der Test schlägt zuerst fehl (Red), dann wird der minimale Code geschrieben, damit er besteht (Green), dann wird der Code aufgeräumt (Refactor).
