@@ -41,12 +41,12 @@ mermaid
 flowchart TD
     SRC[Source Code]
 
-    SRC -->|Compiler| MC[Maschinencode]
+    SRC -->|Compiler: C, C++| MC[Maschinencode]
     MC --> EXEC1[Ausführung]
 
-    SRC -->|Interpreter| EXEC2[Direkte Ausführung]
+    SRC -->|Interpreter: Python, JS| EXEC2[Direkte Ausführung]
 
-    SRC -->|Hybrid| BC[Bytecode]
+    SRC -->|Hybrid: Java, C#35;| BC[Bytecode]
     BC -->|JVM / CLR + JIT| EXEC3[Ausführung]
 ```
 
