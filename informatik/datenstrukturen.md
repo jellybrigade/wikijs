@@ -1,3 +1,13 @@
+---
+title: datenstrukturen
+description: 
+published: 1
+date: 2026-02-21T10:53:58.440Z
+tags: 
+editor: markdown
+dateCreated: 2026-02-21T07:24:43.106Z
+---
+
 # Datenstrukturen
 
 ## Überblick
@@ -127,25 +137,6 @@ graph TD
 - Im Binary Search Tree (BST): linkes Kind < Elternknoten < rechtes Kind
 - Suche, Einfügen, Löschen in O(log n) — deutlich schneller als lineare Suche
 
-### Graph — Aufbau
-
-```kroki
-mermaid
-
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
-graph LR
-    A --- B
-    A --- C
-    B --- C
-    B --- D
-    C --- D
-```
-
-- **Knoten (Nodes):** einzelne Datenpunkte (A, B, C, D)
-- **Kanten (Edges):** Verbindungen zwischen Knoten
-- **Ungerichtet (`—`):** Verbindung gilt in beide Richtungen
-- **Gerichtet (`→`):** Verbindung gilt nur in eine Richtung (z. B. Einbahnstraße)
-- Anwendungen: Routenplanung, soziale Netzwerke, Paketabhängigkeiten
 
 ## Zeitkomplexität im Vergleich
 
