@@ -15,7 +15,7 @@ dateCreated: 2026-02-21T07:24:43.106Z
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#e8e8e8', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#d0d0d0', 'nodeTextColor': '#fff', 'clusterBkg': '#d0d0d0'}}}%%
 mindmap
   root((Datenstrukturen))
     Einfach
