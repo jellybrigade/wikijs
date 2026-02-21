@@ -17,8 +17,7 @@ mermaid
 
 %%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
-    MS["Maschinensprache
-0010 0101 0011 0100"]
+    MS[Maschinensprache]
     AS["Assembler
 mov ax, 2"]
     HS["Hochsprachenprogrammierung
@@ -39,7 +38,7 @@ mermaid
 
 %%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
-    SRC[Source Code]
+    SRC[Quellcode]
 
     SRC -->|Compiler: C, C++| MC[Maschinencode]
     MC --> EXEC1[Ausführung]
@@ -71,7 +70,7 @@ mermaid
 
 %%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
-    SC[Source Code] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
+    SC[Quellcode] -->|Scanner / Lexikalische Analyse| TOK[Token-Stream]
     TOK -->|Parser / Syntaxanalyse| AST[Syntaxbaum]
     AST --> EXE[Codegenerierung / Ausführung]
 ```
