@@ -11,7 +11,7 @@ Das Schwierige — auch bei KI — ist oft nicht das Codieren, sondern das **pr�
 ```kroki
 mermaid
 
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'padding': 25}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 flowchart TD
     PD[Problemdefinition]
     AM[Analyse und Modellierung]
