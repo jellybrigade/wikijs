@@ -2,7 +2,7 @@
 title: datenstrukturen
 description: 
 published: 1
-date: 2026-02-21T10:53:58.440Z
+date: 2026-02-21T10:57:29.724Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-21T07:24:43.106Z
@@ -69,7 +69,7 @@ Diese Strukturen beschreiben, wie Daten verwaltet werden — nicht nur gespeiche
 | Struktur | Analogie | Verhalten |
 |---|---|---|
 | Queue | Warteschlange | First In, First Out (FIFO) |
-| Stack | Bücherstapel | Last In, First Out (LIFO) |
+| Stack | Zettelstapel | Last In, First Out (LIFO) |
 | Hash | Wörterbuch / Index | Direkter Zugriff über Schlüssel, sehr schnell |
 | Tree | Stammbaum | Hierarchische Struktur mit Eltern- und Kindknoten |
 | Graph | Straßennetz / Netzwerk | Knoten verbunden durch Kanten, gerichtet oder ungerichtet |
