@@ -56,7 +56,7 @@ Algorithmen werden vor dem Codieren in einer standardisierten Notation beschrieb
 
 ### PAP (Programmablaufplan)
 
-Grafisches Flussdiagramm. Anweisungen, Entscheidungen und Schleifen werden mit standardisierten Symbolen dargestellt und mit Pfeilen verbunden (DIN 66001). Gut lesbar für einfache Abläufe, wird bei tief verschachtelten Strukturen unübersichtlich.
+Eines der ältesten grafischen Darstellungsmittel für Algorithmen — entstanden in den 1930er Jahren, in den 1960er Jahren international standardisiert (DIN 66001). Ein PAP ist ein **Flussdiagramm**: Anweisungen, Entscheidungen und Schleifen werden mit genormten Symbolen dargestellt und mit Pfeilen verbunden. Wird zur Visualisierung von Prozessen, Logikabfolgen und einfachen Algorithmen verwendet. Gut lesbar für einfache Abläufe, wird bei tief verschachtelten Strukturen unübersichtlich.
 
 ![PAP Grundstrukturen](../assets/images/pap-grundstrukturen.png)
 
@@ -64,7 +64,7 @@ Weiterführend: [PAP (Wikipedia)](https://de.wikipedia.org/wiki/Programmablaufpl
 
 ### Nassi-Shneidermann (Struktogramm)
 
-Grafisch wie der PAP, aber ohne Pfeile. Jede Struktur (Sequenz, Selektion, Iteration) ist ein geschachtelter Block. Das erzwingt strukturierten Code — Spaghetti-Sprünge wie `goto` lassen sich gar nicht darstellen. Norm: **DIN 66261**.
+Entwickelt, um die Prinzipien der **strukturierten Programmierung zu erzwingen**. Im Gegensatz zum PAP gibt es keine Pfeile — das Struktogramm ist **blockorientiert, nicht flussorientiert**. Jede Kontrollstruktur (Sequenz, Selektion, Iteration) ist ein geschachtelter Block. Spaghetti-Sprünge wie `goto` lassen sich gar nicht darstellen — nur die drei erlaubten Kontrollstrukturen sind darstellbar. Norm: **DIN 66261**.
 
 ![Nassi-Shneidermann Grundstrukturen](../assets/images/nassi-shneidermann-grundstrukturen.png)
 
@@ -78,11 +78,12 @@ Beispiel: Kaffee-Algorithmus als Pseudocode
 
 ```
 PROGRAMM KaffeeMachen
-  WENN Bohnen vorhanden UND Wasser vorhanden UND Behälter nicht voll DANN
-    Maschine einschalten
-    Tasse unter Auslauf stellen
+  WENN Kaffeebohnen >= Mindestmenge UND Wassertank >= Mindestmenge
+       UND Trester < Maximalstand UND Auffangschale < Maximalstand DANN
+    Kaffeemaschine einschalten
+    Tasse unter den Auslauf stellen
     Knopf drücken
-    WARTEN BIS Kaffee fertig
+    WARTEN BIS Kaffee fertig durchgelaufen
     Tasse nehmen
   SONST
     Fehlermeldung ausgeben
@@ -90,24 +91,68 @@ PROGRAMM KaffeeMachen
 ENDE PROGRAMM
 ```
 
+### Einsatz heute
+
+In der modernen Softwareentwicklung haben PAP und Struktogramm weitgehend ausgedient. Der PAP ist noch vereinzelt anzutreffen — z. B. für einfache Prozessdiagramme. Das Struktogramm wird kaum noch verwendet, am ehesten noch in der Schule. Abgelöst wurden beide durch **UML** (Unified Modeling Language), das eine breite Palette standardisierter Diagrammtypen für objektorientierte Softwareentwicklung bietet.
+
 ## Beispiel: Kaffee-Algorithmus
 
-**Problem:** Einmal Kaffee mit der Schulmaschine zubereiten.
+**Problem:** Einmal Kaffee oder Tee mit der Schulmaschine zubereiten.
 
-**Checks (Vorbedingungen):**
+### Vorbedingungen
 
-- Welcher Automat ist es?
-- Sind Kaffeebohnen in der Maschine?
-- Ist Wasser in der Maschine?
-- Sind Kaffeesatz-Behälter und Auffangbehälter leer genug?
+Vor dem Start werden vier Komponenten geprüft. Wassertank und Kaffeefach haben eine **Untergrenze** (Mindeststand) — zu wenig ist ein Problem. Trester und Auffangschale haben eine **Obergrenze** (Maximalstand) — zu voll ist ein Problem:
 
-**Ablauf (nur wenn alle Checks positiv):**
+| Komponente | Prüfung | Grenze |
+|---|---|---|
+| Wassertank | Mindeststand | Mindestens genug Wasser für eine Tasse |
+| Kaffeefach | Mindeststand | Mindestens genug Kaffeebohnen für eine Portion |
+| Trester | Maximalstand | Trester nicht voll |
+| Auffangschale | Maximalstand | Auffangschale nicht voll |
+
+Das **Kaffeefach** und der **Trester** werden nur bei Kaffee geprüft — bei Tee werden keine Kaffeebohnen benötigt, und Trester entsteht nur bei Kaffee.
+
+### Pseudocode
 
 ```
-Kaffeemaschine einschalten
-Tasse nehmen
-Tasse unter den Auslauf stellen
-Knopf drücken
-Warten bis Kaffee fertig durchgelaufen
-Tasse nehmen und genießen
+PROGRAMM GetränkZubereiten
+
+  EINGABE Getränkwahl  // "Kaffee" oder "Tee"
+
+  // Wassertank: Mindeststand prüfen (immer)
+  WENN Wassertank < Mindeststand für eine Tasse DANN
+    AUSGABE "Wassertank auffüllen"
+    ABBRECHEN
+  ENDE WENN
+
+  // Auffangschale: Maximalstand prüfen (immer)
+  WENN Auffangschale >= Maximalstand DANN
+    AUSGABE "Auffangschale leeren"
+    ABBRECHEN
+  ENDE WENN
+
+  // Kaffeespezifische Prüfungen (nur bei Kaffee)
+  WENN Getränkwahl = "Kaffee" DANN
+
+    WENN Kaffeefach < Mindeststand für eine Portion Kaffeebohnen DANN
+      AUSGABE "Kaffeebohnen nachfüllen"
+      ABBRECHEN
+    ENDE WENN
+
+    WENN Trester >= Maximalstand DANN
+      AUSGABE "Trester leeren"
+      ABBRECHEN
+    ENDE WENN
+
+  ENDE WENN
+
+  // Ablauf (alle Vorbedingungen erfüllt)
+  Kaffeemaschine einschalten
+  Tasse unter den Auslauf stellen
+  Getränkwahl am Display eingeben
+  Knopf drücken
+  WARTEN BIS Getränk fertig durchgelaufen
+  Tasse nehmen und genießen
+
+ENDE PROGRAMM
 ```

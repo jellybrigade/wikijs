@@ -47,6 +47,8 @@ Ein PAP ist eine **grafische Darstellung von Programmabläufen** mit genormten S
 | PAP Designer | Windows |
 | [app.diagrams.net](https://app.diagrams.net) | Web |
 
+![Beispiel-Ablaufprogramm](../assets/images/Beispiel-Ablaufprogramm.jpg)
+
 ## Sequenz (Anweisungsfolge)
 
 Anweisungen werden der Reihe nach ausgeführt.
@@ -91,6 +93,29 @@ switch (tag) {
 ```
 
 `switch` eignet sich, wenn eine Variable gegen mehrere feste Werte geprüft wird. `if-else` ist flexibler und erlaubt beliebige Bedingungen.
+
+## Zusammengesetzte Bedingungen
+
+Eine Bedingung ist immer entweder `true` oder `false`. Mit logischen Operatoren lassen sich mehrere Bedingungen zu einer zusammengesetzten Bedingung verknüpfen:
+
+| Operator | Name | Bedeutung |
+|---|---|---|
+| `&&` | Logisches UND | `true`, wenn **beide** Bedingungen `true` sind |
+| `\|\|` | Logisches ODER | `true`, wenn **mindestens eine** Bedingung `true` ist |
+| `!` | Logisches NICHT | Kehrt den Wahrheitswert um |
+
+```java
+// ((B1 && B2) || B3)
+boolean b1 = punkte >= 50;
+boolean b2 = anwesenheit >= 80;
+boolean b3 = sondergenehmigung;
+
+if ((b1 && b2) || b3) {
+    System.out.println("Bestanden");
+}
+```
+
+Klammern bestimmen die Reihenfolge der Auswertung — wie in der Mathematik.
 
 ## Iteration (Wiederholungsstruktur)
 
