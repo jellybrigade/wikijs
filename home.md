@@ -35,6 +35,7 @@ Java, Git, Docker und Entwicklungsumgebungen.
 - [Docker und Devcontainer](it-labor/docker-und-devcontainer.md) — Docker, TDD, Funktion vs. Prozedur
 - [Maven und Gradle](it-labor/maven-und-gradle.md) — Build-Tools, Projektstruktur, Teilprojekte, Schütz-Repo
 - [Zahlenduell](it-labor/zahlenduell.md) — Java-Projekt: Ratespiel mit TDD
+- [Java Grundlagen](it-labor/java-grundlagen.md) — Variablen, Arithmetik, Scanner, String, Switch, …
 
 ---
 
