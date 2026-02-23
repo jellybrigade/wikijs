@@ -69,6 +69,60 @@ public int addieren(int a, int b) {
 }
 ```
 
+## JUnit
+
+JUnit ist das Standard-Testframework für Java. Tests sind normale Java-Klassen, die mit `@Test` markierte Methoden enthalten.
+
+### Einbinden (Maven)
+
+```xml
+<!-- pom.xml -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>5.x</version>
+    <scope>test</scope>
+</dependency>
+```
+
+`<scope>test</scope>` bedeutet: die Abhängigkeit ist nur beim Kompilieren und Ausführen von Tests vorhanden, nicht im fertigen Programm.
+
+### Aufbau eines Tests
+
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class RechnerTest {
+
+    @Test
+    void addierenGibtRichtigesErgebnis() {
+        Rechner r = new Rechner();
+        assertEquals(5, r.addieren(2, 3));
+    }
+}
+```
+
+### Wichtige Annotationen und Assertions
+
+| | Bedeutung |
+|---|---|
+| `@Test` | Markiert eine Testmethode |
+| `@BeforeEach` | Läuft vor jedem Test (z. B. Objekte initialisieren) |
+| `assertEquals(erwartet, tatsächlich)` | Prüft auf Gleichheit |
+| `assertTrue(bedingung)` | Prüft, dass eine Bedingung wahr ist |
+| `assertFalse(bedingung)` | Prüft, dass eine Bedingung falsch ist |
+| `assertNull(objekt)` | Prüft, dass ein Objekt `null` ist |
+
+### Tests ausführen
+
+```sh
+mvn test          # Maven
+./gradlew test    # Gradle
+```
+
+VSCode zeigt Testergebnisse auch direkt im Editor an (grüner Haken / rotes Kreuz neben der Testmethode).
+
 ## Klassen und Methoden in Java
 
 Eine **Klasse** ist ein Bauplan für Objekte. Sie beschreibt, welche Eigenschaften (Attribute) und welches Verhalten (Methoden) ein Objekt dieses Typs hat. Im TDD-Beispiel oben ist `Taschenrechner` eine Klasse.
@@ -76,3 +130,12 @@ Eine **Klasse** ist ein Bauplan für Objekte. Sie beschreibt, welche Eigenschaft
 Eine **Methode** ist eine Funktion, die zu einer Klasse gehört und eine Operation beschreibt, die ein Objekt ausführen kann. `addieren(int a, int b)` ist eine Methode der Klasse `Taschenrechner`.
 
 Mehr zum Thema: [Programmierparadigmen — Objektorientiert](../informatik/programmierparadigmen.md)
+
+## Funktion vs. Prozedur
+
+| Begriff | Java-Signatur | Rückgabewert |
+|---|---|---|
+| **Funktion** | `int generiereZahl()` | Ja — liefert einen Wert zurück |
+| **Prozedur** | `void start()` | Nein — führt nur Aktionen aus |
+
+In Java gibt es keine formale Unterscheidung im Sprachstandard — beides sind Methoden. Der Unterschied liegt im Rückgabetyp: `void` = Prozedur, alles andere = Funktion.

@@ -32,7 +32,9 @@ Java, Git, Docker und Entwicklungsumgebungen.
 - [Entwicklungsumgebung](it-labor/entwicklungsumgebung.md) — VSCode, WSL, Devcontainer
 - [Git-Grundlagen](it-labor/git-grundlagen.md) — Workflow, Befehle, Diagramm
 - [Git-Konfiguration](it-labor/git-konfiguration.md) — .gitignore, .gitattributes
-- [Docker und Devcontainer](it-labor/docker-und-devcontainer.md) — Docker, Maven, TDD
+- [Docker und Devcontainer](it-labor/docker-und-devcontainer.md) — Docker, Maven, TDD, Funktion vs. Prozedur
+- [Gradle](it-labor/gradle.md) — Build-Tool, Teilprojekte, Schütz-Repo
+- [Zahlenduell](it-labor/zahlenduell.md) — Java-Projekt: Ratespiel mit TDD
 
 ---
 
