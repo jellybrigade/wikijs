@@ -38,11 +38,11 @@ Ist ein Problem zu groß, wird es aufgeteilt. Das gilt für Probleme genauso wie
 
 Jeder Algorithmus lässt sich aus genau drei Kontrollstrukturen aufbauen:
 
-| Struktur | Bezeichnung | Beschreibung |
-|---|---|---|
-| Sequenz | Anweisungsfolge | Anweisungen werden der Reihe nach ausgeführt |
-| Selektion | Auswahlstruktur | Abhängig von einer Bedingung wird ein Zweig gewählt |
-| Iteration | Wiederholungsstruktur | Ein Block wird wiederholt ausgeführt |
+| Struktur  | Bezeichnung           | Beschreibung                                        |
+| --------- | --------------------- | --------------------------------------------------- |
+| Sequenz   | Anweisungsfolge       | Anweisungen werden der Reihe nach ausgeführt        |
+| Selektion | Auswahlstruktur       | Abhängig von einer Bedingung wird ein Zweig gewählt |
+| Iteration | Wiederholungsstruktur | Ein Block wird wiederholt ausgeführt                |
 
 **Böhm und Jacopini** haben bewiesen: Jede berechenbare Funktion lässt sich mit diesen drei Strukturen darstellen. `goto` ist nicht notwendig.
 
@@ -103,12 +103,12 @@ In der modernen Softwareentwicklung haben PAP und Struktogramm weitgehend ausged
 
 Vor dem Start werden vier Komponenten geprüft. Wassertank und Kaffeefach haben eine **Untergrenze** (Mindeststand) — zu wenig ist ein Problem. Trester und Auffangschale haben eine **Obergrenze** (Maximalstand) — zu voll ist ein Problem:
 
-| Komponente | Prüfung | Grenze |
-|---|---|---|
-| Wassertank | Mindeststand | Mindestens genug Wasser für eine Tasse |
-| Kaffeefach | Mindeststand | Mindestens genug Kaffeebohnen für eine Portion |
-| Trester | Maximalstand | Trester nicht voll |
-| Auffangschale | Maximalstand | Auffangschale nicht voll |
+| Komponente    | Prüfung      | Grenze                                         |
+| ------------- | ------------ | ---------------------------------------------- |
+| Wassertank    | Mindeststand | Mindestens genug Wasser für eine Tasse         |
+| Kaffeefach    | Mindeststand | Mindestens genug Kaffeebohnen für eine Portion |
+| Trester       | Maximalstand | Trester nicht voll                             |
+| Auffangschale | Maximalstand | Auffangschale nicht voll                       |
 
 Das **Kaffeefach** und der **Trester** werden nur bei Kaffee geprüft — bei Tee werden keine Kaffeebohnen benötigt, und Trester entsteht nur bei Kaffee.
 
@@ -117,42 +117,87 @@ Das **Kaffeefach** und der **Trester** werden nur bei Kaffee geprüft — bei Te
 ```
 PROGRAMM GetränkZubereiten
 
-  EINGABE Getränkwahl  // "Kaffee" oder "Tee"
+  WIEDERHOLE
 
-  // Wassertank: Mindeststand prüfen (immer)
-  WENN Wassertank < Mindeststand für eine Tasse DANN
-    AUSGABE "Wassertank auffüllen"
-    ABBRECHEN
-  ENDE WENN
+    EINGABE Getränkwahl  // "Kaffee" oder "Tee"
 
-  // Auffangschale: Maximalstand prüfen (immer)
-  WENN Auffangschale >= Maximalstand DANN
-    AUSGABE "Auffangschale leeren"
-    ABBRECHEN
-  ENDE WENN
-
-  // Kaffeespezifische Prüfungen (nur bei Kaffee)
-  WENN Getränkwahl = "Kaffee" DANN
-
-    WENN Kaffeefach < Mindeststand für eine Portion Kaffeebohnen DANN
-      AUSGABE "Kaffeebohnen nachfüllen"
-      ABBRECHEN
+    // Wassertank: Mindeststand prüfen (immer)
+    WENN Wassertank < Mindeststand für eine Tasse DANN
+      AUSGABE "Wassertank auffüllen"
+      WEITER  // zurück zur Getränkwahl
     ENDE WENN
 
-    WENN Trester >= Maximalstand DANN
-      AUSGABE "Trester leeren"
-      ABBRECHEN
+    // Auffangschale: Maximalstand prüfen (immer)
+    WENN Auffangschale >= Maximalstand DANN
+      AUSGABE "Auffangschale leeren"
+      WEITER  // zurück zur Getränkwahl
     ENDE WENN
 
-  ENDE WENN
+    // Kaffeespezifische Prüfungen (nur bei Kaffee)
+    WENN Getränkwahl = "Kaffee" DANN
 
-  // Ablauf (alle Vorbedingungen erfüllt)
-  Kaffeemaschine einschalten
-  Tasse unter den Auslauf stellen
-  Getränkwahl am Display eingeben
-  Knopf drücken
-  WARTEN BIS Getränk fertig durchgelaufen
-  Tasse nehmen und genießen
+      WENN Kaffeefach < Mindeststand für eine Portion Kaffeebohnen DANN
+        AUSGABE "Kaffeebohnen nachfüllen"
+        WEITER  // zurück zur Getränkwahl
+      ENDE WENN
+
+      WENN Trester >= Maximalstand DANN
+        AUSGABE "Trester leeren"
+        WEITER  // zurück zur Getränkwahl
+      ENDE WENN
+
+    ENDE WENN
+
+    // Ablauf (alle Vorbedingungen erfüllt)
+    Kaffeemaschine einschalten
+    Tasse unter den Auslauf stellen
+    Getränkwahl am Display eingeben
+    Knopf drücken
+    WARTEN BIS Getränk fertig durchgelaufen
+    Tasse nehmen und genießen
+    ABBRECHEN  // Schleife beenden
+
+  ENDE WIEDERHOLE
 
 ENDE PROGRAMM
+```
+
+### Flussdiagramm
+
+```kroki
+mermaid
+
+%%{init: {'theme': 'base', 'flowchart': {'htmlLabels': false}, 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
+flowchart TD
+    START([Start])
+    E[Getränkwahl eingeben]
+    W{Wassertank < Mindeststand?}
+    WE[Wassertank auffüllen]
+    A{Auffangschale >= Maximalstand?}
+    AE[Auffangschale leeren]
+    K{Getränkwahl = Kaffee?}
+    KF{Kaffeefach < Mindeststand?}
+    KFE[Kaffeebohnen nachfüllen]
+    T{Trester >= Maximalstand?}
+    TE[Trester leeren]
+    ON[Kaffeemaschine einschalten]
+    CUP[Tasse unter Auslauf stellen]
+    DISP[Getränkwahl am Display eingeben]
+    BTN[Knopf drücken]
+    WAIT[Warten bis Getränk fertig]
+    TAKE[Tasse nehmen und genießen]
+    END([Ende])
+
+    START --> E --> W
+    W -->|Ja| WE --> E
+    W -->|Nein| A
+    A -->|Ja| AE --> E
+    A -->|Nein| K
+    K -->|Ja| KF
+    KF -->|Ja| KFE --> E
+    KF -->|Nein| T
+    T -->|Ja| TE --> E
+    T -->|Nein| ON
+    K -->|Nein| ON
+    ON --> CUP --> DISP --> BTN --> WAIT --> TAKE --> END
 ```
