@@ -448,3 +448,58 @@ switch (tag) {
 - `default` wird ausgeführt, wenn kein `case` passt. Optional, aber empfohlen.
 
 Switch funktioniert mit `int`, `char`, `String` und Enums.
+
+---
+
+## Zugriffsmodifikatoren
+
+Java kontrolliert, wer auf Klassen, Methoden und Variablen zugreifen darf — mit **Zugriffsmodifikatoren** (Access Modifiers). Das ist ein zentrales Konzept der objektorientierten Programmierung.
+
+| Modifier | Sichtbarkeit |
+|---|---|
+| `private` | Nur innerhalb **derselben Klasse** |
+| `package-private` *(kein Modifier)* | Innerhalb desselben **Packages** |
+| `protected` | Im Package **und** in Unterklassen |
+| `public` | **Überall** zugänglich |
+
+### Faustregel: Variablen immer `private`
+
+Attribute (Felder) einer Klasse sollten **immer `private`** sein. Nur die eigene Klasse darf direkt auf ihren internen Zustand zugreifen. Nach außen werden Werte über Methoden (Getter/Setter) zugänglich gemacht.
+
+```java
+public class Konto {
+    private double kontostand;   // private — nur Konto darf direkt darauf zugreifen
+
+    public double getKontostand() {
+        return kontostand;       // nach außen über Methode zugänglich
+    }
+
+    public void einzahlen(double betrag) {
+        if (betrag > 0) {
+            kontostand += betrag;
+        }
+    }
+}
+```
+
+Wäre `kontostand` public, könnte jede andere Klasse den Wert direkt setzen — auch auf ungültige Werte wie `-9999`. `private` schützt den internen Zustand.
+
+### Vergleich mit dem lg1-Projekt
+
+In `ZahlenRaten.java` sind alle Methoden `public`, weil sie von außen (z. B. von der Testklasse oder der `main`-Methode) aufgerufen werden müssen:
+
+```java
+public int generiereZahl() { ... }   // public — Testklasse ruft sie auf
+public int genauGeraten(...) { ... } // public — Testklasse ruft sie auf
+public void start() { ... }          // public — Einstiegspunkt von außen
+```
+
+Wenn eine Hilfsmethode nur intern gebraucht wird, sollte sie `private` sein — dann ist sofort klar, dass sie ein Implementierungsdetail ist und nicht Teil der öffentlichen Schnittstelle.
+
+### Methoden: public vs. private
+
+| | `public` | `private` |
+|---|---|---|
+| Wer darf aufrufen? | Jeder | Nur die Klasse selbst |
+| Wann verwenden? | Schnittstelle nach außen | Interne Hilfslogik |
+| Testbar von außen? | Ja | Nein — wird indirekt durch `public`-Methoden getestet |

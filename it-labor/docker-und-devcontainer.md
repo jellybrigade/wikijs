@@ -94,6 +94,21 @@ class RechnerTest {
 }
 ```
 
+### Methoden-Sichtbarkeit bei Tests
+
+```java
+@Test
+public void meinTest() {
+    // Arrange
+    ZahlenRaten raten = new ZahlenRaten();
+
+    // Act & Assert
+    assertTrue(raten.generiereZahl() >= 1);
+}
+```
+
+In JUnit 5 dürfen Testmethoden auch `package-private` (ohne Modifier) sein — `public` ist aber üblich und schadet nicht. Die Methode darf **keinen Rückgabewert** haben (`void`). Der Methodenname beschreibt, was getestet wird.
+
 ### Wichtige Annotationen und Assertions
 
 | | Bedeutung |
@@ -130,3 +145,13 @@ Mehr zum Thema: [Programmierparadigmen — Objektorientiert](../informatik/progr
 | **Prozedur** | `void start()` | Nein — führt nur Aktionen aus |
 
 In Java gibt es keine formale Unterscheidung im Sprachstandard — beides sind Methoden. Der Unterschied liegt im Rückgabetyp: `void` = Prozedur, alles andere = Funktion.
+
+Der Unterschied wird beim Lesen des Codes sofort sichtbar: Steht `void` vor dem Methodennamen, gibt die Methode nichts zurück — sie *tut* etwas, aber liefert kein Ergebnis. Steht ein Typ wie `int`, `String` oder `boolean`, liefert sie einen Wert, den man weiterverwenden kann.
+
+```java
+// Funktion — gibt etwas zurück, das wir nutzen können
+int zahl = raten.generiereZahl();
+
+// Prozedur — führt etwas aus, gibt aber nichts zurück
+raten.start();
+```

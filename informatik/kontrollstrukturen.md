@@ -49,6 +49,21 @@ Ein PAP ist eine **grafische Darstellung von Programmabläufen** mit genormten S
 
 ![Beispiel-Ablaufprogramm](../assets/images/Beispiel-Ablaufprogramm.jpg)
 
+## Warum PAP und Struktogramm?
+
+Beide Darstellungsformen beschreiben denselben Algorithmus — aus unterschiedlichen Perspektiven.
+
+| | PAP (Programmablaufplan) | Struktogramm (Nassi-Shneidermann) |
+|---|---|---|
+| **Entstehung** | 1930er Jahre; in den 1960ern standardisiert | 1970er Jahre, als Reaktion auf "Spaghetti-Code" |
+| **Ausrichtung** | Flussorientiert — folgt dem Kontrollfluss | Blockorientiert — zeigt die Struktur des Codes |
+| **Zweck** | Visualisierung von Prozessen und einfachen Algorithmen | Erzwingt strukturierte Programmierung (nur erlaubte Kontrollstrukturen) |
+| **Heute** | Noch gelegentlich in der Industrie | Kaum noch in Verwendung, eher in der Schule |
+
+In der modernen Softwareentwicklung hat **UML** (Unified Modeling Language) beide weitgehend abgelöst — mit speziellen Diagrammtypen für Klassenstrukturen, Abläufe, Zustände und mehr.
+
+> **Prüfungsrelevant:** Die Umwandlung PAP → Struktogramm und Struktogramm → PAP kommt zum Test. Beide Richtungen üben.
+
 ## Sequenz (Anweisungsfolge)
 
 Anweisungen werden der Reihe nach ausgeführt.
@@ -96,7 +111,7 @@ switch (tag) {
 
 ## Zusammengesetzte Bedingungen
 
-Eine Bedingung ist immer entweder `true` oder `false`. Mit logischen Operatoren lassen sich mehrere Bedingungen zu einer zusammengesetzten Bedingung verknüpfen:
+Eine Bedingung ist immer entweder `true` oder `false`. Mit logischen Operatoren lassen sich mehrere Bedingungen verknüpfen:
 
 | Operator | Name | Bedeutung |
 |---|---|---|
@@ -115,7 +130,63 @@ if ((b1 && b2) || b3) {
 }
 ```
 
-Klammern bestimmen die Reihenfolge der Auswertung — wie in der Mathematik.
+### Auswertungsreihenfolge
+
+Java wertet zusammengesetzte Bedingungen in dieser Reihenfolge aus:
+
+1. `!` — zuerst
+2. `&&` — dann
+3. `||` — zuletzt
+
+Bei `B1 && B2 || B3 && !B4` wird also zuerst `!B4` ausgewertet, dann beide `&&`-Verbindungen, dann das `||`. **Klammernsetzung schadet nicht** — gerade wenn es komplexer wird, macht eine explizite Klammer die Absicht sofort klar.
+
+### Praxisbeispiele
+
+**Einlasskontrolle (UND-Logik):** Beide Bedingungen müssen erfüllt sein.
+
+```java
+// Über 18 AND (Ticket OR Gästeliste)
+if (alter >= 18 && (hatTicket || stehtAufGaesteliste)) {
+    System.out.println("Einlass gewährt");
+}
+```
+
+**Ausnahmeregel (ODER-Logik):** Es wird nach *einem Grund* gesucht, jemanden reinzulassen — sobald einer gefunden ist, wird abgebrochen.
+
+```java
+// Besitzer OR Gästeliste OR Ticket
+if (istBesitzer || stehtAufGaesteliste || hatTicket) {
+    System.out.println("Einlass gewährt");
+} else {
+    System.out.println("Kein Einlass");
+}
+```
+
+**Null-Check bei ArrayList:** Die Reihenfolge kann einen Unterschied machen — nicht nur logisch, sondern auch für die Stabilität des Programms.
+
+```java
+ArrayList<String> list = new ArrayList<>();
+
+// FALSCH — wenn list null ist, wirft list.size() eine NullPointerException
+// bevor die null-Prüfung überhaupt erreicht wird:
+if (list.size() > 0 && list != null) { ... }
+
+// RICHTIG — null zuerst prüfen:
+if (list != null && list.size() > 0) { ... }
+```
+
+Java wertet `&&` von links nach rechts aus (*Short-Circuit-Evaluation*): Ist die linke Seite `false`, wird die rechte gar nicht mehr ausgewertet. Das spart Zeit — und verhindert Fehler.
+
+### Entscheidungstabellen
+
+Wenn eine Bedingung komplex wird, hilft eine **Entscheidungstabelle**: Man listet alle möglichen Kombinationen der Eingaben auf und hält fest, was in jedem Fall passiert. Das macht Lücken und Widersprüche sofort sichtbar.
+
+### Aufgaben
+
+| Aufgabe | Bedingung |
+|---|---|
+| Rabatt nur für Kunden mit Treuekonto **und** Einkaufswert über 100 € | `hatTreuekonto && einkaufswert > 100` |
+| Schüler darf am Ausflug teilnehmen, wenn er eine Einverständniserklärung hat **oder** volljährig ist | `hatEinverstaendnis \|\| istVolljährig` |
 
 ## Iteration (Wiederholungsstruktur)
 
