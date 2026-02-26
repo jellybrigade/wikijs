@@ -57,3 +57,4 @@ bin/
 # Docker
 .dockerignore
 docker-compose.override.yml
+CLAUDE.md
