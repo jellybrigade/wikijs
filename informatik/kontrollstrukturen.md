@@ -175,11 +175,112 @@ if (list.size() > 0 && list != null) { ... }
 if (list != null && list.size() > 0) { ... }
 ```
 
-Java wertet `&&` von links nach rechts aus (*Short-Circuit-Evaluation*): Ist die linke Seite `false`, wird die rechte gar nicht mehr ausgewertet. Das spart Zeit — und verhindert Fehler.
+Java wertet `&&` von links nach rechts aus (*Short-Circuit-Evaluation*): Ist die linke Seite `false`, wird die rechte gar nicht mehr ausgewertet. Das spart Zeit — und verhindert Fehler. Bei `||` gilt das Gleiche in die andere Richtung — ist die linke Seite bereits `true`, wird die rechte übersprungen.
+
+**Spielkauf (kombinierte Logik):** Bedingungen mit `&&` und `||` lassen sich verschachteln. Short-Circuit greift auf beiden Ebenen:
+
+```java
+// Kaufen erlaubt, wenn: (Alter > 16 UND Spiel nicht indiziert) ODER Zertifikat vorhanden
+if ((alter > 16 && !aufIndex) || hatZertifikat) {
+    kaufen();
+} else {
+    nichtKaufen();
+}
+// Sobald hatZertifikat == true, wird (alter > 16 && !aufIndex) gar nicht mehr geprüft.
+```
 
 ### Entscheidungstabellen
 
-Wenn eine Bedingung komplex wird, hilft eine **Entscheidungstabelle**: Man listet alle möglichen Kombinationen der Eingaben auf und hält fest, was in jedem Fall passiert. Das macht Lücken und Widersprüche sofort sichtbar.
+Entscheidungstabellen sind das **mächtigste Mittel**, um komplexe Abhängigkeiten zwischen Bedingungen und Aktionen **übersichtlich, vollständig und widerspruchsfrei** darzustellen. Sie zeigen auf einen Blick, welche Kombinationen welche Aktionen auslösen — und ob es Lücken oder Widersprüche gibt.
+
+**Vorgehen:**
+1. Bedingungen und Aktionen identifizieren
+2. Vollständige Tabelle aufstellen (alle Kombinationen)
+3. Tabelle reduzieren
+4. Else-Regel anwenden
+
+#### Wie viele Regeln?
+
+Bei Ja/Nein-Bedingungen: **2^n** (n = Anzahl der Bedingungen).
+Bei gemischten Wertebereichen: **Produkt aller Varianten** — z.B. 2 × Ja/Nein-Bedingungen + 1 × A/B/C-Bedingung: 2² × 3¹ = 12 Regeln.
+
+#### Beispiel: Spielkauf
+
+Bedingungen: B1 Zertifikat?, B2 Alter > 16?, B3 Auf Index?
+Aktionen: Kaufen, Nicht kaufen
+Anzahl Regeln: 2³ = 8
+
+Systematisches Befüllen: 4× J / 4× N → 2× J / 2× N → abwechselnd J / N:
+
+| Bedingungen       | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |
+|---|---|---|---|---|---|---|---|---|
+| B1: Zertifikat?   | J  | J  | J  | J  | N  | N  | N  | N  |
+| B2: Alter > 16?   | J  | J  | N  | N  | J  | J  | N  | N  |
+| B3: Auf Index?    | J  | N  | J  | N  | J  | N  | J  | N  |
+| **Kaufen**        | x  | x  | x  | x  |    | x  |    |    |
+| **Nicht kaufen**  |    |    |    |    | x  |    | x  | x  |
+
+> **Wichtigste Regel zuerst:** Wer ein Zertifikat hat, darf immer kaufen. Diese Regel kommt nach oben — sobald B1 = J, müssen B2 und B3 nicht mehr geprüft werden.
+
+#### Reduktion
+
+**Regel:** Zwei Regeln lassen sich zusammenfassen, wenn sie **dieselbe Aktion** auslösen und sich nur in **einer Bedingung** unterscheiden. Diese Bedingung wird dann mit `-` (= „Don't care") markiert.
+
+**Schritt 1:** R1/R2 unterscheiden sich nur in B3, ebenso R3/R4 und R7/R8:
+
+| Bedingungen       | R1/R2 | R3/R4 | R5 | R6 | R7/R8 |
+|---|---|---|---|---|---|
+| B1: Zertifikat?   | J     | J     | N  | N  | N     |
+| B2: Alter > 16?   | J     | N     | J  | J  | N     |
+| B3: Auf Index?    | -     | -     | J  | N  | -     |
+| **Kaufen**        | x     | x     |    | x  |       |
+| **Nicht kaufen**  |       |       | x  |    | x     |
+
+**Schritt 2:** R1/R2 und R3/R4 unterscheiden sich nur in B2:
+
+| Bedingungen       | R1–R4 | R5 | R6 | R7/R8 |
+|---|---|---|---|---|
+| B1: Zertifikat?   | J     | N  | N  | N     |
+| B2: Alter > 16?   | -     | J  | J  | N     |
+| B3: Auf Index?    | -     | J  | N  | -     |
+| **Kaufen**        | x     |    | x  |       |
+| **Nicht kaufen**  |       | x  |    | x     |
+
+> Diese Tabelle ist die **Testtabelle** — sie listet alle relevanten Testfälle auf.
+
+#### Else-Regel
+
+Führen mehrere Regeln zur **selben Aktion** und haben sie keine eigene Bedingungskombination, werden sie zur **Else-Regel** zusammengefasst. Hier: R5 und R7/R8 führen immer zu „Nicht kaufen":
+
+| Bedingungen       | Spezial (R1–R4) | Normal (R6) | ELSE |
+|---|---|---|---|
+| B1: Zertifikat?   | J               | N           | -    |
+| B2: Alter > 16?   | -               | J           | -    |
+| B3: Auf Index?    | -               | N           | -    |
+| **Kaufen**        | x               | x           |      |
+| **Nicht kaufen**  |                 |             | x    |
+
+#### Implementierung
+
+```java
+if (hatZertifikat) {
+    kaufen();
+} else if (alter > 16 && !aufIndex) {
+    kaufen();
+} else {
+    nichtKaufen();
+}
+```
+
+Oder kompakt mit Short-Circuit:
+
+```java
+if (hatZertifikat || (alter > 16 && !aufIndex)) {
+    kaufen();
+} else {
+    nichtKaufen();
+}
+```
 
 ### Aufgaben
 
@@ -241,5 +342,33 @@ int i = 1;
 while (i <= 10) {
     summe += i;
     i++;
+}
+```
+
+### Schleifen vorzeitig beenden
+
+Mit drei Schlüsselwörtern kann man den normalen Ablauf einer Schleife unterbrechen:
+
+| Schlüsselwort | Wirkung |
+|---|---|
+| `break` | Beendet die Schleife sofort |
+| `continue` | Überspringt den Rest des aktuellen Durchlaufs, startet den nächsten |
+| `return` | Beendet die gesamte Methode (und damit auch die Schleife) |
+
+> **Wichtig:** `return` gehört in Funktionen, nicht in Schleifen. Wer nur die Schleife verlassen will, verwendet `break`. `return` beendet die gesamte Methode — das ist selten die Absicht, wenn man sich mitten in einer Schleife befindet.
+
+```java
+// break: Schleife abbrechen, sobald Wert gefunden
+for (int i = 0; i < zahlen.length; i++) {
+    if (zahlen[i] == gesuchteZahl) {
+        System.out.println("Gefunden bei Index " + i);
+        break; // Schleife sofort verlassen
+    }
+}
+
+// continue: Negative Zahlen überspringen
+for (int zahl : zahlen) {
+    if (zahl < 0) continue; // direkt zur nächsten Iteration springen
+    System.out.println(zahl);
 }
 ```
