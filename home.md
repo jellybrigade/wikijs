@@ -2,10 +2,10 @@
 title: home
 description: 
 published: 1
-date: 2026-02-21T11:03:28.113Z
+date: 2026-03-02T07:29:41.886Z
 tags: 
 editor: markdown
-dateCreated: 2026-02-21T07:24:37.237Z
+dateCreated: 2026-02-26T09:19:48.117Z
 ---
 
 # Notizen - Informatik und ITL-1
@@ -44,4 +44,6 @@ Java, Git, Docker und Entwicklungsumgebungen.
 - [Git-Workflow-Diagramm](it-labor/git-grundlagen.md)
 - [Compiler vs. Interpreter vs. Hybrid](informatik/programmiersprachen.md)
 - [Phasenmodell-Pipeline](informatik/phasenmodell.md)
+
+![schutz_meme.png](/schutz_meme.png)
 
