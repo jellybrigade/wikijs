@@ -193,18 +193,141 @@ if ((alter > 16 && !aufIndex) || hatZertifikat) {
 
 Entscheidungstabellen sind das **mächtigste Mittel**, um komplexe Abhängigkeiten zwischen Bedingungen und Aktionen **übersichtlich, vollständig und widerspruchsfrei** darzustellen. Sie zeigen auf einen Blick, welche Kombinationen welche Aktionen auslösen — und ob es Lücken oder Widersprüche gibt.
 
-**Vorgehen:**
-1. Bedingungen und Aktionen identifizieren
-2. Vollständige Tabelle aufstellen (alle Kombinationen)
-3. Tabelle reduzieren
-4. Else-Regel anwenden
+**Vorgehensweise:**
+1. Bedingungen und Aktionen identifizieren *(Hilfsschritt: WENN-DANN-Sätze bilden)*
+2. Reihenfolge der Bedingungen festlegen
+3. Logisches Raster erstellen
+4. Aktionen zuordnen (inkl. additive Aktionen)
+5. Optimierung durchführen (Regeln zusammenfassen)
+6. Else-Regel anwenden
 
-#### Wie viele Regeln?
+#### Schritt 1: Bedingungen und Aktionen erkennen
 
-Bei Ja/Nein-Bedingungen: **2^n** (n = Anzahl der Bedingungen).
-Bei gemischten Wertebereichen: **Produkt aller Varianten** — z.B. 2 × Ja/Nein-Bedingungen + 1 × A/B/C-Bedingung: 2² × 3¹ = 12 Regeln.
+**Bedingungen** beschreiben einen Zustand oder eine Tatsache — meist mit Ja/Nein beantwortbar. Signalwörter im Text:
 
-#### Beispiel: Spielkauf
+| Typ | Beispiele |
+|---|---|
+| Status-Wörter | „ist angemeldet", „hat bezahlt", „vorhanden", „gültig" |
+| Vergleichs-Wörter | „größer als", „mindestens", „unter", „maximal" |
+| Einleitungs-Wörter | „Falls", „Wenn", „Ist", „Sofern", „Unter der Bedingung, dass" |
+
+*Beispiel: „Wenn der Kunde eine Kundenkarte hat…" → Bedingung: Kunde hat Kundenkarte*
+
+**Aktionen** beschreiben, was das System tut, nachdem eine Bedingung erfüllt ist. Signalwörter:
+
+| Typ | Beispiele |
+|---|---|
+| Befehls-Wörter (Verben) | „berechnen", „drucken", „anzeigen", „sperren", „versenden" |
+| Ergebnis-Wörter | „Rabatt von 5 %", „Zulassung erteilt", „Fehlermeldung 404" |
+| Einleitungs-Wörter | „…dann…", „…erfolgt…", „…muss…" |
+
+*Beispiel: „…dann gewähren wir 5 % Rabatt" → Aktion: 5 % Rabatt gewähren*
+
+#### Hilfsschritt: WENN-DANN-Sätze
+
+Um sicherzugehen, dass keine Bedingung vergessen wurde, lässt sich die Logik in WENN-DANN-Sätze übersetzen:
+
+```
+WENN [Bedingung] DANN [Aktion]
+WENN [Bedingung 1] UND/ODER/NICHT [Bedingung 2] DANN [Aktion]
+```
+
+*Beispiel: WENN Fahrgast unter 6 Jahre alt ist DANN fährt er gratis*
+
+Dieser Hilfsschritt ist optional, schadet aber nicht — er deckt Lücken auf, bevor die Tabelle gebaut wird.
+
+#### Schritt 2: Reihenfolge der Bedingungen festlegen
+
+Die Reihenfolge bestimmt, wie effizient und lesbar die Tabelle wird. Es gibt zwei Prinzipien:
+
+| Prinzip | Bedeutung | Beispiel |
+|---|---|---|
+| **Dominanz** | Eine Bedingung macht alle anderen überflüssig → kommt nach oben | Sturmwarnung → Lift gesperrt, egal was sonst gilt |
+| **Reihenfolge** | Bedingungen bauen aufeinander auf → logische Kette | Erst Konto prüfen, dann Kontostand prüfen |
+
+> „Die Bedingung, die andere Bedingungen überflüssig (*Don't Care*) macht, gehört nach oben. Saubere Logik fließt von oben (wichtig/allgemein) nach unten (spezifisch/Detail)."
+
+**Übung — Skilift:** *„Kinder unter 10 Jahren freier Eintritt. Senioren ab 65 Jahren Rabatt. Alle anderen voller Preis. Bei Sturmwarnung bleibt der Lift für alle geschlossen."*
+→ Dominante Bedingung nach oben: **Sturmwarnung?** — wenn Ja, alle anderen Bedingungen egal.
+
+**Übung — Paketausgabe:** *„Paket wird nur ausgegeben, wenn der Kunde einen gültigen Abholcode besitzt. Bei Nachnahme erst nach Zahlung."*
+→ Dominante Bedingung nach oben: **Code gültig?** — wenn Nein, alles andere egal.
+
+**Übung — Prüfungszulassung:** *„Zulassung wenn ≥ 80 % der Hausübungen abgegeben. Wer weniger hat, aber eine ärztliche Entschuldigung, wird ebenfalls zugelassen. Ohne beides keine Zulassung."*
+→ Zwei Wege zur Zulassung — hier muss man selbst entscheiden, welche Bedingung wichtiger ist.
+
+#### Schritt 3: Logisches Raster erstellen
+
+**Formel für Ja/Nein-Bedingungen:** 2^n (n = Anzahl der Bedingungen).
+
+Das Raster systematisch von oben nach unten befüllen: Oberste Zeile n/2 × J, dann n/2 × N — jede weitere Zeile halbiert den Rhythmus:
+
+```
+2 Bedingungen → 4 Regeln:
+  J J N N
+  J N J N
+
+3 Bedingungen → 8 Regeln:
+  J J J J N N N N
+  J J N N J J N N
+  J N J N J N J N
+```
+
+**Gemischte Wertebereiche:** Produkt aller Varianten — z.B. 2 × Ja/Nein-Bedingungen + 1 × A/B/C-Bedingung: 2² × 3 = 12 Regeln. Das Befüllen folgt demselben Prinzip mit angepasster Schrittweite.
+
+#### Schritt 4: Aktionen zuordnen
+
+Jede Spalte ist ein Testfall. Von oben nach unten lesen, mit den WENN-DANN-Sätzen abgleichen, dann Kreuz setzen. Kein Kreuz = keine Aktion bei dieser Kombination.
+
+**Additive Aktionen:** Eine Bedingungskombination kann mehrere Aktionen gleichzeitig auslösen → mehrere Kreuze in einer Spalte.
+
+*Beispiel Bankomat: Kontostand ausreichend → Geldscheine ausgeben **+** Beleg drucken **+** Kontostand aktualisieren **+** Karte zurückgeben.*
+
+#### Vollständiges Beispiel: Fahrtpreis
+
+*„Ein Ticket kostet 10 €. Wer eine Rabattkarte besitzt, zahlt nur die Hälfte. Kinder unter 6 Jahren fahren grundsätzlich gratis — egal ob Rabattkarte oder nicht."*
+
+Bedingungen und Aktionen identifizieren:
+- B1: Fahrgast < 6 Jahre? *(dominant — macht Rabattkarte irrelevant)*
+- B2: Fahrgast hat Rabattkarte?
+- Aktionen: Gratis | 5 € | 10 €
+
+WENN-DANN-Sätze:
+- WENN Fahrgast < 6 Jahre DANN gratis
+- WENN Fahrgast ≥ 6 Jahre UND Rabattkarte DANN 5 €
+- WENN Fahrgast ≥ 6 Jahre UND keine Rabattkarte DANN 10 €
+
+**Vollständige Tabelle (2² = 4 Regeln):**
+
+| Bedingungen             | R1 | R2 | R3 | R4 |
+|---|---|---|---|---|
+| B1: Fahrgast < 6 Jahre? | J  | J  | N  | N  |
+| B2: Rabattkarte?        | J  | N  | J  | N  |
+| **Gratis**              | x  | x  |    |    |
+| **5 €**                 |    |    | x  |    |
+| **10 €**                |    |    |    | x  |
+
+**Nach Optimierung** — R1 und R2 führen zur gleichen Aktion und unterscheiden sich nur in B2 → Don't Care:
+
+| Bedingungen             | R1/R2 | R3 | R4 |
+|---|---|---|---|
+| B1: Fahrgast < 6 Jahre? | J     | N  | N  |
+| B2: Rabattkarte?        | -     | J  | N  |
+| **Gratis**              | x     |    |    |
+| **5 €**                 |       | x  |    |
+| **10 €**                |       |    | x  |
+
+#### Schritt 5: Optimierung
+
+**Regel:** Zwei Regeln lassen sich zusammenfassen, wenn sie **dieselbe Aktion** auslösen und sich nur in **einer Bedingung** unterscheiden. Diese Bedingung wird mit `-` markiert (*Don't Care*).
+
+Schrittweise wiederholen, bis keine weiteren Zusammenfassungen möglich sind.
+
+#### Schritt 6: Else-Regel
+
+Führen mehrere Regeln zur **selben Aktion** und lassen sie sich nicht weiter spezifizieren, werden sie zur **Else-Regel** zusammengefasst. Sie fängt alle nicht explizit genannten Fälle ab.
+
+#### Ausführliches Beispiel: Spielkauf
 
 Bedingungen: B1 Zertifikat?, B2 Alter > 16?, B3 Auf Index?
 Aktionen: Kaufen, Nicht kaufen
@@ -222,11 +345,7 @@ Systematisches Befüllen: 4× J / 4× N → 2× J / 2× N → abwechselnd J / N:
 
 > **Wichtigste Regel zuerst:** Wer ein Zertifikat hat, darf immer kaufen. Diese Regel kommt nach oben — sobald B1 = J, müssen B2 und B3 nicht mehr geprüft werden.
 
-#### Reduktion
-
-**Regel:** Zwei Regeln lassen sich zusammenfassen, wenn sie **dieselbe Aktion** auslösen und sich nur in **einer Bedingung** unterscheiden. Diese Bedingung wird dann mit `-` (= „Don't care") markiert.
-
-**Schritt 1:** R1/R2 unterscheiden sich nur in B3, ebenso R3/R4 und R7/R8:
+**Reduktion Schritt 1** — R1/R2 unterscheiden sich nur in B3, ebenso R3/R4 und R7/R8:
 
 | Bedingungen       | R1/R2 | R3/R4 | R5 | R6 | R7/R8 |
 |---|---|---|---|---|---|
@@ -236,7 +355,7 @@ Systematisches Befüllen: 4× J / 4× N → 2× J / 2× N → abwechselnd J / N:
 | **Kaufen**        | x     | x     |    | x  |       |
 | **Nicht kaufen**  |       |       | x  |    | x     |
 
-**Schritt 2:** R1/R2 und R3/R4 unterscheiden sich nur in B2:
+**Reduktion Schritt 2** — R1/R2 und R3/R4 unterscheiden sich nur in B2:
 
 | Bedingungen       | R1–R4 | R5 | R6 | R7/R8 |
 |---|---|---|---|---|
@@ -248,9 +367,7 @@ Systematisches Befüllen: 4× J / 4× N → 2× J / 2× N → abwechselnd J / N:
 
 > Diese Tabelle ist die **Testtabelle** — sie listet alle relevanten Testfälle auf.
 
-#### Else-Regel
-
-Führen mehrere Regeln zur **selben Aktion** und haben sie keine eigene Bedingungskombination, werden sie zur **Else-Regel** zusammengefasst. Hier: R5 und R7/R8 führen immer zu „Nicht kaufen":
+**Else-Regel** — R5 und R7/R8 führen immer zu „Nicht kaufen":
 
 | Bedingungen       | Spezial (R1–R4) | Normal (R6) | ELSE |
 |---|---|---|---|
