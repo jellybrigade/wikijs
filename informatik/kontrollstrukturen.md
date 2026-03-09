@@ -323,6 +323,31 @@ WENN-DANN-Sätze:
 
 Schrittweise wiederholen, bis keine weiteren Zusammenfassungen möglich sind.
 
+#### Prüfsumme
+
+Nach der Optimierung prüft die **Prüfsumme**, ob bei der Reduktion Fehler entstanden sind — also ob Regeln verloren gegangen oder doppelt gezählt wurden.
+
+**Berechnung:**
+- Jeder originäre Wert in einer Spalte zählt **1**
+- Ein `-` (*Don't Care*) zählt so viele wie die Bedingung Werte hat: bei J/N = **2**, bei A/B/C = **3**, bei A/B/C/D = **4** usw.
+- Die Werte jeder Spalte **multiplizieren** → Spaltengewicht
+- Alle Spaltengewichte **summieren**
+- Das Ergebnis muss gleich dem **Gesamtprodukt** aller Bedingungsanzahlen sein
+
+**Gesamtprodukt:** Anzahl der Werte jeder Bedingung multipliziert — z. B. bei A/B/C + J/N + J/N: 3 × 2 × 2 = **12**
+
+**Beispiel:**
+
+| Bedingung | Werte | R1    | R3    | R4    | R5    | R9    |
+|-----------|-------|-------|-------|-------|-------|-------|
+| 1         | A/B/C | A = 1 | A = 1 | - = 3 | B = 1 | C = 1 |
+| 2         | J/N   | J = 1 | N = 1 | N = 1 | - = 2 | J = 1 |
+| 3         | J/N   | - = 2 | J = 1 | N = 1 | J = 1 | N = 1 |
+
+Spaltengewichte: R1: 1×1×2 = **2** · R3: 1×1×1 = **1** · R4: 3×1×1 = **3** · R5: 1×2×1 = **2** · R9: 1×1×1 = **1**
+
+Summe aller gezeigten Regeln: 2 + 1 + 3 + 2 + 1 = **9** — die restlichen 3 Regeln der vollständigen Tabelle ergeben zusammen wieder **12**.
+
 #### Schritt 6: Else-Regel
 
 Führen mehrere Regeln zur **selben Aktion** und lassen sie sich nicht weiter spezifizieren, werden sie zur **Else-Regel** zusammengefasst. Sie fängt alle nicht explizit genannten Fälle ab.
@@ -462,7 +487,7 @@ while (i <= 10) {
 }
 ```
 
-### Schleifen vorzeitig beenden
+### Sprunganweisungen
 
 Mit drei Schlüsselwörtern kann man den normalen Ablauf einer Schleife unterbrechen:
 
@@ -472,20 +497,136 @@ Mit drei Schlüsselwörtern kann man den normalen Ablauf einer Schleife unterbre
 | `continue` | Überspringt den Rest des aktuellen Durchlaufs, startet den nächsten |
 | `return` | Beendet die gesamte Methode (und damit auch die Schleife) |
 
-> **Wichtig:** `return` gehört in Funktionen, nicht in Schleifen. Wer nur die Schleife verlassen will, verwendet `break`. `return` beendet die gesamte Methode — das ist selten die Absicht, wenn man sich mitten in einer Schleife befindet.
+> **Warum keine Sprunganweisungen?** Zu viele `break`- und `continue`-Anweisungen machen Code unübersichtlich. Labeled-Varianten gelten als besonders schwer lesbar und sollten wenn möglich durch Refactoring vermieden werden.
+
+> **Funktion vs. Prozedur:** Eine *Funktion* gibt einen Rückgabewert zurück (`return wert;`), eine *Prozedur* nicht (`void`). `return` beendet die gesamte Methode — wer nur die Schleife verlassen will, verwendet `break`.
+
+#### break
+
+Die `break`-Anweisung beendet die Schleife sofort. Die Programmausführung springt zur ersten Anweisung nach der Schleife.
+
+![Funktionsweise von break](../assets/images/java-break-statement-works.webp)
 
 ```java
-// break: Schleife abbrechen, sobald Wert gefunden
-for (int i = 0; i < zahlen.length; i++) {
-    if (zahlen[i] == gesuchteZahl) {
-        System.out.println("Gefunden bei Index " + i);
-        break; // Schleife sofort verlassen
+// Schleife bei Wert 5 abbrechen
+for (int i = 1; i <= 10; i++) {
+    if (i == 5) {
+        break;
+    }
+    System.out.println(i);
+}
+// Ausgabe: 1 2 3 4
+```
+
+```java
+// Summe positiver Zahlen berechnen — bei negativer Zahl aufhören
+import java.util.Scanner;
+
+Scanner eingabe = new Scanner(System.in);
+double zahl, summe = 0.0;
+
+while (true) {
+    System.out.print("Zahl eingeben: ");
+    zahl = eingabe.nextDouble();
+
+    if (zahl < 0.0) {
+        break; // Schleife verlassen
+    }
+    summe += zahl;
+}
+System.out.println("Summe = " + summe);
+```
+
+#### break in verschachtelten Schleifen
+
+Bei verschachtelten Schleifen beendet `break` nur die **innerste** Schleife.
+
+![break in verschachtelten Schleifen](../assets/images/nested-while-loop-break.webp)
+
+#### Labeled break
+
+Mit einem Label kann auch die **äußerste** (oder eine bestimmte) Schleife beendet werden.
+
+![Labeled break](../assets/images/labeled-break-statement-Java.webp)
+
+```java
+// Äußere Schleife mit Label beenden
+erste:
+for (int i = 1; i < 5; i++) {
+    zweite:
+    for (int j = 1; j < 3; j++) {
+        System.out.println("i = " + i + "; j = " + j);
+        if (i == 2)
+            break erste; // beendet die äußere Schleife
     }
 }
-
-// continue: Negative Zahlen überspringen
-for (int zahl : zahlen) {
-    if (zahl < 0) continue; // direkt zur nächsten Iteration springen
-    System.out.println(zahl);
-}
+// Ausgabe:
+// i = 1; j = 1
+// i = 1; j = 2
+// i = 2; j = 1
 ```
+
+#### continue
+
+Die `continue`-Anweisung überspringt den Rest des aktuellen Durchlaufs und springt direkt zur nächsten Iteration.
+
+![Funktionsweise von continue](../assets/images/java-continue.webp)
+
+```java
+// Werte 5–8 überspringen
+for (int i = 1; i <= 10; i++) {
+    if (i > 4 && i < 9) {
+        continue;
+    }
+    System.out.println(i);
+}
+// Ausgabe: 1 2 3 4 9 10
+```
+
+```java
+// Summe von 5 positiven Zahlen — negative Eingaben ignorieren
+Scanner eingabe = new Scanner(System.in);
+double zahl, summe = 0.0;
+
+for (int i = 1; i < 6; i++) {
+    System.out.print("Zahl " + i + " eingeben: ");
+    zahl = eingabe.nextDouble();
+
+    if (zahl <= 0.0) {
+        continue; // negative Zahl überspringen
+    }
+    summe += zahl;
+}
+System.out.println("Summe = " + summe);
+```
+
+#### continue in verschachtelten Schleifen
+
+Bei verschachtelten Schleifen überspringt `continue` den aktuellen Durchlauf der **innersten** Schleife.
+
+![continue in verschachtelten Schleifen](../assets/images/java-continue-with-nested-loop.webp)
+
+#### Labeled continue
+
+Mit einem Label wird der aktuelle Durchlauf der **bezeichneten** (äußeren) Schleife übersprungen.
+
+![Labeled continue](../assets/images/java-labeled-continue.webp)
+
+```java
+// Äußere Schleife mit Label überspringen
+erste:
+for (int i = 1; i < 6; i++) {
+    for (int j = 1; j < 5; j++) {
+        if (i == 3 || j == 2)
+            continue erste; // überspringt den aktuellen Durchlauf der äußeren Schleife
+        System.out.println("i = " + i + "; j = " + j);
+    }
+}
+// Ausgabe:
+// i = 1; j = 1
+// i = 2; j = 1
+// i = 4; j = 1
+// i = 5; j = 1
+```
+
+> **Hinweis:** Labeled `continue` macht Code schwer lesbar. Wenn möglich, durch Refactoring ersetzen.
