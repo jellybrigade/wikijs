@@ -515,7 +515,7 @@ Mit drei Schlüsselwörtern kann man den normalen Ablauf einer Schleife unterbre
 
 Die `break`-Anweisung beendet die Schleife sofort. Die Programmausführung springt zur ersten Anweisung nach der Schleife.
 
-
+![Funktionsweise von break](../assets/images/java-break-statement-works.webp)
 
 ```java
 // Schleife bei Wert 5 abbrechen
@@ -551,13 +551,13 @@ System.out.println("Summe = " + summe);
 
 Bei verschachtelten Schleifen beendet `break` nur die **innerste** Schleife.
 
-
+![break in verschachtelten Schleifen](../assets/images/nested-while-loop-break.webp)
 
 #### Labeled break
 
 Mit einem Label kann auch die **äußerste** (oder eine bestimmte) Schleife beendet werden.
 
-
+![Labeled break](../assets/images/labeled-break-statement-Java.webp)
 
 ```java
 // Äußere Schleife mit Label beenden
@@ -580,7 +580,7 @@ for (int i = 1; i < 5; i++) {
 
 Die `continue`-Anweisung überspringt den Rest des aktuellen Durchlaufs und springt direkt zur nächsten Iteration.
 
-
+![Funktionsweise von continue](../assets/images/java-continue.webp)
 
 ```java
 // Werte 5–8 überspringen
@@ -614,13 +614,13 @@ System.out.println("Summe = " + summe);
 
 Bei verschachtelten Schleifen überspringt `continue` den aktuellen Durchlauf der **innersten** Schleife.
 
-
+![continue in verschachtelten Schleifen](../assets/images/java-continue-with-nested-loop.webp)
 
 #### Labeled continue
 
 Mit einem Label wird der aktuelle Durchlauf der **bezeichneten** (äußeren) Schleife übersprungen.
 
-
+![Labeled continue](../assets/images/java-labeled-continue.webp)
 
 ```java
 // Äußere Schleife mit Label überspringen
