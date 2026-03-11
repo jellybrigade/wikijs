@@ -114,18 +114,16 @@ mermaid
 
 %%{init: {'theme': 'base', 'themeVariables': {'background': '#231f20', 'mainBkg': '#3b9689', 'primaryColor': '#3b9689', 'primaryTextColor': '#fff', 'primaryBorderColor': '#70c7ba', 'lineColor': '#70c7ba', 'edgeLabelBackground': '#282425', 'nodeTextColor': '#fff', 'clusterBkg': '#282425'}}}%%
 graph TD
-    n8["8"] --> n3["3"]
-    n8 --> n10["10"]
-    n3 --> n1["1"]
-    n3 --> n6["6"]
-    n6 --> n4["4"]
+    n4["4"] --> n2["2"]
+    n4 --> n6["6"]
+    n2 --> n1["1"]
+    n2 --> n3["3"]
+    n6 --> n5["5"]
     n6 --> n7["7"]
-    n10 --> n14["14"]
-    n14 --> n13["13"]
 ```
 
 - Jeder Knoten hat maximal zwei Kinder (links, rechts)
-- Im Binary Search Tree (BST): linkes Kind < Elternknoten < rechtes Kind
+- Im Binary Search Tree (BST): linkes Kind < Elternknoten < rechtes Kind — hier: `1 < 2 < 3 < 4 < 5 < 6 < 7`
 - Suche, Einfügen, Löschen in O(log n) — deutlich schneller als lineare Suche
 
 
